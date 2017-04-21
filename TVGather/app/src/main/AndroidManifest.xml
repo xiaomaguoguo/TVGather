@@ -34,6 +34,8 @@
 
         <activity android:name="activity.FocusActivity"/>
 
+        <activity android:name=".RecycleViewCenterActivity"/>
+
 
     </application>
 

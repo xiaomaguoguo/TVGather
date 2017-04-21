@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="1764px"
+        android:layout_height="491px"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:clipChildren="false"
+        android:focusable="false"
+        android:paddingTop="100px" />
+</FrameLayout>

@@ -1,97 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:focusable="true"
+    android:layout_marginLeft="30dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <!--股票上涨、下降统一使用此页面-->
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="558px"
         android:layout_marginTop="30dp"
-        android:background="@drawable/white_bg"
         android:layout_height="388px">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp"
-            android:textColor="@color/sub_gray"
-            android:textSize="28px"
-            android:text="股市" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="20dp"
-            android:text="上证指数"
-            android:textSize="32px"
-            android:textColor="@color/title_black"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView2"
-            android:layout_below="@id/textView2"
-            android:layout_marginTop="11dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textColor="@color/stock_up_content"
-            android:textSize="50px"
-            android:text="3273.83" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView3"
-            android:layout_below="@+id/textView3"
-            android:gravity="center_vertical"
-            android:layout_marginTop="11dp">
-
-            <ImageView
-                android:id="@+id/ivUporDown"
-                android:layout_width="28px"
-                android:layout_height="35px"
-                android:src="@drawable/down_icon"/>
-
-            <ImageView
-                android:id="@+id/ivAddOrMinus"
-                android:layout_width="28px"
-                android:layout_height="35px"
-                android:src="@drawable/minus_icon"/>
+        <RelativeLayout
+            android:layout_width="554px"
+            android:layout_height="384px"
+            android:background="@drawable/white_bg">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="50px"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="210px"
+                android:layout_marginTop="55px"
+                android:textColor="@color/sub_gray"
+                android:textSize="28px"
+                android:text="股市" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="20dp"
+                android:text="上证指数"
+                android:textSize="32px"
+                android:textColor="@color/title_black"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_below="@id/textView2"
+                android:layout_marginTop="11dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/stock_up_content"
-                android:text="15.14 (-0.46%)" />
+                android:textSize="50px"
+                android:text="32.83" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView3"
+                android:layout_below="@+id/textView3"
+                android:gravity="center_vertical"
+                android:layout_marginTop="11dp">
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/title_black"
-            android:text="0000001"
-            android:textSize="32px"
-            android:layout_toRightOf="@id/textView2"
-            android:layout_alignBaseline="@id/textView2"
-            android:layout_marginLeft="8dp"/>
+                <ImageView
+                    android:id="@+id/ivUporDown"
+                    android:layout_width="28px"
+                    android:layout_height="35px"
+                    android:src="@drawable/down_icon"/>
 
-    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/ivAddOrMinus"
+                    android:layout_width="28px"
+                    android:layout_height="35px"
+                    android:src="@drawable/minus_icon"/>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="50px"
+                    android:textColor="@color/stock_up_content"
+                    android:text="15.14 (-0.46%)" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/title_black"
+                android:text="0000001"
+                android:textSize="32px"
+                android:layout_toRightOf="@id/textView2"
+                android:layout_alignBaseline="@id/textView2"
+                android:layout_marginLeft="8dp"/>
+
+        </RelativeLayout>
+
+        <!--边框-->
+        <!--<com.bftv.fui.baseui.widget.ext.FSimpleBlueFrame-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:tag="frame"-->
+            <!--android:visibility="invisible"-->
+            <!--fui:enable_black_background="true" />-->
+
+        <!--边框-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/focus_changed_border"
+            android:tag="frame"
+            android:visibility="invisible"
+            />
+
+
+
+    </FrameLayout>
+
+
 
     <ImageView
+        android:id="@+id/ivLeftTop"
         android:layout_width="210px"
         android:layout_height="150px"
         android:src="@drawable/left_top_img"

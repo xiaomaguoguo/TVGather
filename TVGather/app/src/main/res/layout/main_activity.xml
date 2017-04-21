@@ -41,6 +41,16 @@
                 style="@style/BtnStyle"
                 android:text="移除" />
 
+            <Button
+                android:id="@+id/btnCenter"
+                style="@style/BtnStyle"
+                android:text="条目居中" />
+
+            <Button
+                android:id="@+id/btnScale"
+                style="@style/BtnStyle"
+                android:text="扩展" />
+
         </LinearLayout>
     </HorizontalScrollView>
 

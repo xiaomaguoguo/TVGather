@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="994px"
     android:layout_height="450px"
+    android:layout_gravity="center"
     android:background="@drawable/stock_bg"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80px"
-        android:background="#0066ff"
+        android:background="@drawable/top_left_right_corner"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:paddingLeft="8dp"

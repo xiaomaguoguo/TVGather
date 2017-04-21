@@ -32,7 +32,9 @@ public class FocusActivity extends Activity {
         btnFocus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FocusUtils.onFocusChangeStill(findViewById(R.id.bg),show);
                 FocusUtils.showOrHidden(focusBorder,show);
+//                FocusUtils.kkkk(focusBorder,show);
                 show = !show;
             }
         });

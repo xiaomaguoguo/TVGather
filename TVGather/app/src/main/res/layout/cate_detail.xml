@@ -3,6 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_marginLeft="30dp"
     android:focusable="true"
     android:orientation="vertical">
 

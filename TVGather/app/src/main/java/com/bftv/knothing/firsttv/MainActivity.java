@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     RecycleViewAdapter mAdapter = null;
 
-    private Button btn1,btn2,btn3,add,remove,btnFocus;
+    private Button btn1,btn2,btn3,add,remove,btnFocus,btnCenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btn3 = (Button) findViewById(R.id.button3);
         add = (Button) findViewById(R.id.button4);
         remove = (Button) findViewById(R.id.button5);
+        btnCenter = (Button) findViewById(R.id.btnCenter);
 
         btnFocus.setOnClickListener(this);
         btn1.setOnClickListener(this);
@@ -48,6 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btn3.setOnClickListener(this);
         add.setOnClickListener(this);
         remove.setOnClickListener(this);
+        btnCenter.setOnClickListener(this);
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -96,6 +98,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 //                mAdapter.removeItem(2);
                 Intent intent = new Intent(MainActivity.this,TestActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.btnCenter: // item居中
+                Intent center = new Intent(this,RecycleViewCenterActivity.class);
+                startActivity(center);
                 break;
 
         }
