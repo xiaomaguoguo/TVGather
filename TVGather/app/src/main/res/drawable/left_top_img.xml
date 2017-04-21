@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/cate" android:maxLevel="0"/> <!--美食-->
+    <item android:drawable="@drawable/drugstore" android:maxLevel="1"/> <!--药房-->
+    <item android:drawable="@drawable/schedule" android:maxLevel="2"/> <!--日程-->
+    <item android:drawable="@drawable/stock" android:maxLevel="3"/> <!--股票-->
+    <item android:drawable="@drawable/movie_theatre" android:maxLevel="4"/> <!--影院-->
+    <item android:drawable="@drawable/supermarket" android:maxLevel="5"/> <!--超市-->
+
+</level-list>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <!--影院、美食、药店统一使用此页面-->
+
+    <FrameLayout
+        android:layout_width="558px"
+        android:layout_height="388px"
+        android:layout_marginTop="30dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="554px"
+            android:layout_height="384px"
+            android:background="@drawable/white_bg">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="210px"
+                android:layout_marginTop="55px"
+                tools:text="美食-西域"
+                android:textColor="@color/sub_gray"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView"
+                android:layout_marginStart="30px"
+                android:layout_marginTop="15px"
+                tools:text="美食-西域"
+                android:textColor="@color/title_black"
+                android:textSize="32px" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_below="@id/textView2"
+                android:layout_marginTop="11dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="地址：北京西城区复兴门外大街xxxxxxxxxxx"
+                android:textColor="@color/sub_gray"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView3"
+                android:layout_below="@+id/textView3"
+                android:layout_marginTop="11dp"
+                tools:text="电话：010-66101234"
+                android:maxLines="1"
+                android:textColor="@color/sub_gray"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/LineStyle"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_below="@+id/textView4"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="33px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/textView5"
+                android:layout_alignStart="@+id/textView5"
+                android:layout_below="@+id/textView5"
+                android:layout_marginTop="30px"
+                android:gravity="top|left"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/scoreBody"
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="51px"
+                        android:layout_height="51px"
+                        android:src="@drawable/food_icon" />
+
+                    <TextView
+                        android:id="@+id/tvScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:textColor="@color/title_black"
+                        android:textSize="42px"
+                        android:textStyle="bold"
+                        tools:text="4.6" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="分"
+                        android:textColor="@color/title_black"
+                        android:textSize="26px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/moneyBody"
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="51px"
+                        android:layout_height="51px"
+                        android:src="@drawable/rmb_icon" />
+
+                    <TextView
+                        android:id="@+id/tvPeople"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="71"
+                        android:maxLines="1"
+                        android:maxLength="2"
+                        android:ellipsize="marquee"
+                        android:textColor="@color/title_black"
+                        android:textSize="42px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="人"
+                        android:textColor="@color/title_black"
+                        android:textSize="26px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/distanceBody"
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="51px"
+                        android:layout_height="51px"
+                        android:src="@drawable/distance_icon"/>
+
+                    <TextView
+                        android:id="@+id/tvDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="47344"
+                        android:maxLength="5"
+                        android:ellipsize="marquee"
+                        android:maxLines="1"
+                        android:textColor="@color/title_black"
+                        android:textSize="42px"
+                        android:textStyle="bold"
+                        />
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:text="米"-->
+                    <!--android:textColor="@color/title_black"-->
+                    <!--android:textSize="26px"-->
+                    <!--/>-->
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!--边框-->
+        <View
+            android:id="@+id/focusBorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/focus_changed_border"
+            android:visibility="invisible"
+            android:tag="frame"
+            />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/ivLeftTop"
+        android:layout_width="210px"
+        android:layout_height="150px"
+        android:src="@drawable/left_top_img"
+        />
+
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+        <!--android:id="@+id/cover"-->
+        <!--android:layout_width="210px"-->
+        <!--android:layout_height="150px"-->
+        <!--android:tag="cover"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_marginLeft="25px"-->
+        <!--fresco:placeholderImage="@drawable/left_top_img"/>-->
+
+
+</FrameLayout>
