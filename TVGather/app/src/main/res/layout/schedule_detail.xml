@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--日程使用此页面-->
+
+    <RelativeLayout
+        android:layout_width="558px"
+        android:layout_height="388px"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/white_bg">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="19dp"
+            android:text="2017年5月15号"
+            android:textColor="@color/sub_gray"
+            android:textSize="28px" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:text="和小微到《小牛海记潮汕牛肉店》刷火锅"
+            android:textColor="@color/title_black"
+            android:textSize="32px" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_below="@id/textView2"
+            android:layout_marginTop="11dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/sub_gray" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/sub_gray"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/LineStyle"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="11dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@id/textView5"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_below="@+id/textView5"
+            android:gravity="top|left"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="51px"
+                    android:layout_height="51px"
+                    android:src="@drawable/schedule_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4:00"
+                    android:textColor="@color/title_black"
+                    android:textSize="42px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="下午"
+                    android:textColor="@color/title_black"
+                    android:textSize="26px" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="210px"
+        android:layout_height="150px"
+        android:src="@drawable/left_top_img" />
+
+</FrameLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="sub_gray">#808080</color>
+    <color name="title_black">#000000</color>
+    <color name="stock_up_content">#56ba37</color>
+    <color name="stock_down_content">#f25260</color>
+    <color name="colorGrayDividerLine">#EDEDED</color>     <!--分割线颜色-->
+
+</resources>
