@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Leanback">
         <activity
-            android:name=".MainActivity"
+            android:name="activity.MainActivity"
             android:icon="@drawable/banner"
             android:label="AD测试"
             android:logo="@drawable/banner"
@@ -28,10 +28,12 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity" />
+
         <activity android:name="activity.FocusActivity" />
-        <activity android:name=".RecycleViewCenterActivity" />
-        <activity android:name=".TimeCountActivity" android:theme="@style/FullscreenTheme"/>
+        <activity android:name="activity.RecycleViewCenterActivity" />
+        <activity android:name="activity.RecycleViewActivity"/>
+
+
     </application>
 
 </manifest>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/BtnStyle"
+            android:text="线性" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/BtnStyle"
+            android:text="网格" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/BtnStyle"
+            android:text="瀑布" />
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/BtnStyle"
+            android:text="添加" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/BtnStyle"
+            android:text="移除" />
+
+        <Button
+            android:id="@+id/btnCenter"
+            style="@style/BtnStyle"
+            android:text="条目居中" />
+
+
+    </LinearLayout>
+
+   <include layout="@layout/recycleview_container"/>
+
+</LinearLayout>

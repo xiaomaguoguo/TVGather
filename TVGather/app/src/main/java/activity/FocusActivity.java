@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.bftv.knothing.firsttv.R;
 
-import fragment.FocusUtils;
+import utils.FocusUtils;
 
 /**
  * Created by KNothing on 2017/4/21.

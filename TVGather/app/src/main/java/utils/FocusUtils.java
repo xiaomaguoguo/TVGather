@@ -1,4 +1,4 @@
-package fragment;
+package utils;
 
 import android.animation.ObjectAnimator;
 import android.support.v7.widget.RecyclerView;

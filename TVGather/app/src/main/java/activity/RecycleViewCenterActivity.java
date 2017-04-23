@@ -1,4 +1,4 @@
-package com.bftv.knothing.firsttv;
+package activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+
+import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
+
+import adapter.RecycleViewAdapter;
 
 /**
  * Created by KNothing on 2017/4/21.
@@ -26,7 +28,7 @@ public class RecycleViewCenterActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reeycleview_center);
+        setContentView(R.layout.recycleview_container);
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);

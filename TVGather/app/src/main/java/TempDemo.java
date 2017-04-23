@@ -2,7 +2,7 @@
  * Created by KNothing on 2017/4/18.
  */
 
-public class Test {
+public class TempDemo {
     public static void main(String [] args){
 
         convertUpOrDown();

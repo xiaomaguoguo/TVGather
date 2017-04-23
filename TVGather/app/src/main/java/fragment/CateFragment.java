@@ -14,7 +14,7 @@ import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
 
-import adapter.RecycleViewAdapter;
+import adapter.CateRecycleViewAdapter;
 
 /**
  * Created by KNothing on 2017/4/15.
@@ -23,7 +23,7 @@ public class CateFragment extends Fragment {
 
     private RecyclerView mRecycleView ;
 
-    private RecycleViewAdapter mAdapter;
+    private CateRecycleViewAdapter mAdapter;
 
     @Nullable
     @Override
@@ -46,7 +46,7 @@ public class CateFragment extends Fragment {
         for(int i=0;i<100;i++){
             datas.add(String.valueOf(i));
         }
-        mAdapter = new RecycleViewAdapter(datas);
+        mAdapter = new CateRecycleViewAdapter(datas);
         mRecycleView.setAdapter(mAdapter);
 
     }

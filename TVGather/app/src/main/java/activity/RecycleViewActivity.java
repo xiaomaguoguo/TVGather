@@ -1,4 +1,4 @@
-package com.bftv.knothing.firsttv;
+package activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,47 +11,40 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+
+import com.bftv.knothing.firsttv.R;
+import adapter.RecycleViewAdapter;
 
 import java.util.ArrayList;
 
-import activity.FocusActivity;
-import fragment.FocusUtils;
-
 /**
- * Created by KNothing on 2017/4/14.
+ * Created by KNothing on 2017/4/23.
  */
+public class RecycleViewActivity extends Activity implements View.OnClickListener {
 
-public class MainActivity extends Activity implements View.OnClickListener{
+    private Button btn1,btn2,btn3,add,remove,btnCenter;
 
     RecyclerView mRecycleView;
 
     RecycleViewAdapter mAdapter = null;
 
-    private Button btn1,btn2,btn3,add,remove,btnFocus,btnCenter,btnTimeCount;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-
-        btnFocus = (Button) findViewById(R.id.btnFocus);
+        setContentView(R.layout.activity_recycleview);
         btn1 = (Button) findViewById(R.id.button);
         btn2 = (Button) findViewById(R.id.button2);
         btn3 = (Button) findViewById(R.id.button3);
         add = (Button) findViewById(R.id.button4);
         remove = (Button) findViewById(R.id.button5);
         btnCenter = (Button) findViewById(R.id.btnCenter);
-        btnTimeCount = (Button) findViewById(R.id.btnTimeCount);
 
-        btnFocus.setOnClickListener(this);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
         add.setOnClickListener(this);
         remove.setOnClickListener(this);
         btnCenter.setOnClickListener(this);
-        btnTimeCount.setOnClickListener(this);
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -65,7 +58,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
         mAdapter = new RecycleViewAdapter(datas);
         mRecycleView.setAdapter(mAdapter);
-
     }
 
     @Override
@@ -74,12 +66,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         RecyclerView.LayoutManager lp = null;
 
         switch (v.getId()){
-
-            case R.id.btnFocus:
-                Intent btnFocus = new Intent(this, FocusActivity.class);
-                startActivity(btnFocus);
-                break;
-
             case R.id.button:
                 lp = new LinearLayoutManager(this);
                 break;
@@ -97,21 +83,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.button5:
-//                mAdapter.removeItem(2);
-                Intent intent = new Intent(MainActivity.this,TestActivity.class);
-                startActivity(intent);
+                mAdapter.removeItem(2);
                 break;
 
             case R.id.btnCenter: // item居中
                 Intent center = new Intent(this,RecycleViewCenterActivity.class);
                 startActivity(center);
                 break;
-
-            case R.id.btnTimeCount: // 倒计时
-                Intent timeCount = new Intent(this,TimeCountActivity.class);
-                startActivity(timeCount);
-                break;
-
         }
 
         mRecycleView.setLayoutManager(lp);
