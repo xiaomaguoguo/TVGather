@@ -18,7 +18,6 @@ import adapter.RecycleViewAdapter;
 
 /**
  * Created by KNothing on 2017/4/15.
- * 美食页面
  */
 public class CateFragment extends Fragment {
 

@@ -12,6 +12,11 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnTimeCount"
+                style="@style/BtnStyle"
+                android:text="倒计时" />
+
+            <Button
                 android:id="@+id/btnFocus"
                 style="@style/BtnStyle"
                 android:text="焦点" />
@@ -45,11 +50,6 @@
                 android:id="@+id/btnCenter"
                 style="@style/BtnStyle"
                 android:text="条目居中" />
-
-            <Button
-                android:id="@+id/btnTimeCount"
-                style="@style/BtnStyle"
-                android:text="倒计时" />
 
         </LinearLayout>
     </HorizontalScrollView>

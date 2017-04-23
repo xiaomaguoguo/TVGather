@@ -4,21 +4,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
 
+import widget.CountTimeView;
+
 /**
- * Created by KNothing on 2017/4/15.
+ * Created by KNothing on 2017/4/23.
  * 美食适配器
  */
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyHolder> {
+public class TimeCountViewAdapter extends RecyclerView.Adapter<TimeCountViewAdapter.MyHolder> {
 
     private ArrayList<String> datas = null;
 
-    public RecycleViewAdapter(ArrayList<String> datas){
+    public TimeCountViewAdapter(ArrayList<String> datas){
         this.datas = datas;
     }
 
@@ -34,7 +35,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cate_detail, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_time_count, parent,false);
         MyHolder holder = new MyHolder(view);
         return holder;
     }
@@ -42,6 +43,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
 //        holder.btn.setText(datas.get(position));
+        holder.ctv.startCountTimeAnimation();
     }
 
     @Override
@@ -58,10 +60,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     static class MyHolder extends RecyclerView.ViewHolder{
 
 //        Button btn;
+        CountTimeView ctv;
 
         public MyHolder(View itemView) {
             super(itemView);
 //            btn = (Button) itemView.findViewById(R.id.content_text);
+            ctv = (CountTimeView) itemView.findViewById(R.id.countTimeProgressView);
         }
     }
 }

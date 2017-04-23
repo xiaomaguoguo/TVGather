@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
+    <widget.CountTimeView
+        android:id="@+id/countTimeProgressView"
+        android:layout_width="406px"
+        android:layout_height="406px"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        app:background_Color="#000000"
+        app:borderBottomColor="#FFFFFF"
+        app:borderDrawColor="@color/sub_gray"
+        app:borderWidth="5dp"
+        app:clockwise="true"
+        app:countTime="20000"
+        app:markBallColor="#FFFFFF"
+        app:markBallFlag="true"
+        app:markBallWidth="10dp"
+        app:markIconFlat="true"
+        app:textStyle="clock"
+        app:titleCenter="测试"
+        app:titleCenterColor="#FFFFFF"
+        app:titleCenterSize="72px"/>
 </LinearLayout>

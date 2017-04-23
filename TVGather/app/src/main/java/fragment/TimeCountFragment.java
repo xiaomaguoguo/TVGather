@@ -5,12 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bftv.knothing.firsttv.R;
 
+import java.util.ArrayList;
+
+import adapter.RecycleViewAdapter;
+import adapter.TimeCountViewAdapter;
 import widget.CountTimeView;
 
 /**
@@ -23,9 +30,11 @@ import widget.CountTimeView;
  */
 public class TimeCountFragment extends Fragment {
 
-    private CountTimeView countTimeProgressView;
-
     private OnFragmentInteractionListener mListener;
+
+    private RecyclerView mRecycleView ;
+
+    private TimeCountViewAdapter mAdapter;
 
     public TimeCountFragment() {
         // Required empty public constructor
@@ -62,8 +71,18 @@ public class TimeCountFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        countTimeProgressView = (CountTimeView) view.findViewById(R.id.countTimeProgressView);
-        countTimeProgressView.startCountTimeAnimation();
+        mRecycleView = (RecyclerView) view.findViewById(R.id.recycleView);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecycleView.setLayoutManager(llm);
+        mRecycleView.setItemAnimator(new DefaultItemAnimator());
+
+        ArrayList<String> datas = new ArrayList<>(50);
+        for(int i=0;i<50;i++){
+            datas.add(String.valueOf(i));
+        }
+        mAdapter = new TimeCountViewAdapter(datas);
+        mRecycleView.setAdapter(mAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
