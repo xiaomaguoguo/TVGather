@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     RecycleViewAdapter mAdapter = null;
 
-    private Button btn1,btn2,btn3,add,remove,btnFocus,btnCenter;
+    private Button btn1,btn2,btn3,add,remove,btnFocus,btnCenter,btnTimeCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         add = (Button) findViewById(R.id.button4);
         remove = (Button) findViewById(R.id.button5);
         btnCenter = (Button) findViewById(R.id.btnCenter);
+        btnTimeCount = (Button) findViewById(R.id.btnTimeCount);
 
         btnFocus.setOnClickListener(this);
         btn1.setOnClickListener(this);
@@ -50,6 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         add.setOnClickListener(this);
         remove.setOnClickListener(this);
         btnCenter.setOnClickListener(this);
+        btnTimeCount.setOnClickListener(this);
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -103,6 +105,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.btnCenter: // item居中
                 Intent center = new Intent(this,RecycleViewCenterActivity.class);
                 startActivity(center);
+                break;
+
+            case R.id.btnTimeCount: // 倒计时
+                Intent timeCount = new Intent(this,TimeCountActivity.class);
+                startActivity(timeCount);
                 break;
 
         }

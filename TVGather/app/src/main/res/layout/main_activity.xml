@@ -47,9 +47,9 @@
                 android:text="条目居中" />
 
             <Button
-                android:id="@+id/btnScale"
+                android:id="@+id/btnTimeCount"
                 style="@style/BtnStyle"
-                android:text="扩展" />
+                android:text="倒计时" />
 
         </LinearLayout>
     </HorizontalScrollView>
