@@ -14,17 +14,17 @@ import android.widget.Button;
 
 import com.bftv.knothing.firsttv.R;
 
+import fragment.SoundPoolFragment;
 import fragment.TimeCountFragment;
 
 /**
  * Created by KNothing on 2017/4/14.
  */
-
 public class MainActivity extends FragmentActivity implements View.OnClickListener, TimeCountFragment.OnFragmentInteractionListener{
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnFocus,btnTimeCount,btnRecycle;
+    private Button btnFocus,btnTimeCount,btnRecycle,btnSoundPool;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +34,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnFocus = (Button) findViewById(R.id.btnFocus);
         btnTimeCount = (Button) findViewById(R.id.btnTimeCount);
         btnRecycle = (Button) findViewById(R.id.btnRecycle);
+        btnSoundPool = (Button) findViewById(R.id.btnSoundPool);
 
         btnFocus.setOnClickListener(this);
         btnTimeCount.setOnClickListener(this);
         btnRecycle.setOnClickListener(this);
+        btnSoundPool.setOnClickListener(this);
 
     }
 
@@ -49,6 +51,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         FragmentTransaction ft = fm.beginTransaction();
 
         switch (v.getId()){
+
+            case R.id.btnSoundPool: // SoundPool测试
+                ft.replace(R.id.container, SoundPoolFragment.newInstance());
+                ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
+                ft.commit();
+                break;
 
             case R.id.btnFocus: //焦点测试
                 Intent btnFocus = new Intent(this, FocusActivity.class);

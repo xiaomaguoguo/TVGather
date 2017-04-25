@@ -22,11 +22,15 @@ import java.util.ArrayList;
  */
 public class RecycleViewActivity extends Activity implements View.OnClickListener {
 
-    private Button btn1,btn2,btn3,add,remove,btnCenter;
+    private Button btn1,btn2,btn3,add,remove,btnCenter,update;
 
     RecyclerView mRecycleView;
 
     RecycleViewAdapter mAdapter = null;
+
+    ArrayList<String> datas;
+
+    RecyclerView.LayoutManager lp = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +42,9 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
         add = (Button) findViewById(R.id.button4);
         remove = (Button) findViewById(R.id.button5);
         btnCenter = (Button) findViewById(R.id.btnCenter);
+        update = (Button) findViewById(R.id.update);
 
+        update.setOnClickListener(this);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
@@ -48,11 +54,12 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);
+        lp = llm;
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecycleView.setLayoutManager(llm);
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
 
-        ArrayList<String> datas = new ArrayList<>(100);
+        datas = new ArrayList<>(100);
         for(int i=0;i<100;i++){
             datas.add(String.valueOf(i));
         }
@@ -63,9 +70,19 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-        RecyclerView.LayoutManager lp = null;
-
         switch (v.getId()){
+
+            case R.id.update: //更新某个位置
+//                mAdapter.notifyItemChanged(2);
+//                View view  = mRecycleView.getChildAt(2);
+//                Button btn = (Button) view.findViewById(R.id.content_text);
+//                RecycleViewAdapter.MyHolder  holder = (RecycleViewAdapter.MyHolder) mRecycleView.findViewHolderForAdapterPosition(2);
+//                btn.setText("可以改");
+
+                updateListItem(2);
+
+                break;
+
             case R.id.button:
                 lp = new LinearLayoutManager(this);
                 break;
@@ -94,4 +111,14 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
 
         mRecycleView.setLayoutManager(lp);
     }
+
+    private void updateListItem(int position) {
+//        View view = lp.findViewByPosition(position);
+//        Button btn = (Button) view.findViewById(R.id.content_text);
+//        btn.setText("哈哈");
+        datas.remove(2);
+        datas.add(2,"可以");
+        mAdapter.notifyItemChanged(position);
+    }
+
 }

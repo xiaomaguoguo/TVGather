@@ -9,6 +9,11 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/update"
+            style="@style/BtnStyle"
+            android:text="更新" />
+
+        <Button
             android:id="@+id/button"
             style="@style/BtnStyle"
             android:text="线性" />

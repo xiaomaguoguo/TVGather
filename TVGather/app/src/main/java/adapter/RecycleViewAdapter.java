@@ -1,6 +1,7 @@
 package adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         notifyItemRemoved(position);
     }
 
+    public void changeItem(int position){
+        notifyItemChanged(position);
+    }
+
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        View view = View.inflate(parent.getContext(),R.layout.item_contenet,null);
@@ -43,6 +48,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.btn.setText(datas.get(position));
+        Log.i("KKK","onBindViewHolder");
     }
 
     @Override
@@ -56,9 +62,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 
-    static class MyHolder extends RecyclerView.ViewHolder{
+    public static class MyHolder extends RecyclerView.ViewHolder{
 
-        Button btn;
+        public Button btn;
 
         public MyHolder(View itemView) {
             super(itemView);

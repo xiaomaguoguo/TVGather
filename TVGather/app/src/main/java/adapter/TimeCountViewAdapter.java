@@ -9,6 +9,7 @@ import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
 
+import fragment.TimeCountFragment;
 import widget.CountTimeView;
 
 /**
@@ -17,13 +18,13 @@ import widget.CountTimeView;
  */
 public class TimeCountViewAdapter extends RecyclerView.Adapter<TimeCountViewAdapter.MyHolder> {
 
-    private ArrayList<String> datas = null;
+    private ArrayList<TimeCountFragment.TimeTaskBean> datas = null;
 
-    public TimeCountViewAdapter(ArrayList<String> datas){
+    public TimeCountViewAdapter(ArrayList<TimeCountFragment.TimeTaskBean> datas){
         this.datas = datas;
     }
 
-    public void addItem(String item,int position){
+    public void addItem(TimeCountFragment.TimeTaskBean item, int position){
         datas.add(position,item);
         notifyItemInserted(position);
     }
@@ -43,7 +44,10 @@ public class TimeCountViewAdapter extends RecyclerView.Adapter<TimeCountViewAdap
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
 //        holder.btn.setText(datas.get(position));
-        holder.ctv.startCountTimeAnimation();
+        if(!datas.get(position).isPauseAnim){
+            holder.ctv.setCountTime(Integer.valueOf(datas.get(position).time));
+            holder.ctv.startCountTimeAnimation();
+        }
     }
 
     @Override

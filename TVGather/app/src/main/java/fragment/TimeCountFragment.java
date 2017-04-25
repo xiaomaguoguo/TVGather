@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bftv.knothing.firsttv.R;
 
@@ -33,6 +34,8 @@ public class TimeCountFragment extends Fragment {
     private RecyclerView mRecycleView ;
 
     private TimeCountViewAdapter mAdapter;
+
+    private ArrayList<TimeTaskBean> datas;
 
     public TimeCountFragment() {
         // Required empty public constructor
@@ -63,21 +66,30 @@ public class TimeCountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.recycleview_container, container, false);
+        return inflater.inflate(R.layout.recycleview_test, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecycleView = (RecyclerView) view.findViewById(R.id.recycleView);
+        Button btnUpdate = (Button) view.findViewById(R.id.btnUpdate);
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateItem(2);
+            }
+        });
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecycleView.setLayoutManager(llm);
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
 
-        ArrayList<String> datas = new ArrayList<>(50);
+        datas = new ArrayList<>(50);
         for(int i=0;i<50;i++){
-            datas.add(String.valueOf(i));
+            TimeTaskBean ttb = new TimeTaskBean();
+            ttb.time = "5000";
+            datas.add(ttb);
         }
         mAdapter = new TimeCountViewAdapter(datas);
         mRecycleView.setAdapter(mAdapter);
@@ -123,5 +135,21 @@ public class TimeCountFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void updateItem(int position){
+//        datas.remove(position);
+//        TimeTaskBean ttb = new TimeTaskBean();
+//        ttb.time = "10000";
+//        ttb.isPauseAnim = true;
+//        datas.add(position,ttb);
+        datas.get(position).isPauseAnim = true;
+        datas.get(position).time = "10000";
+        mAdapter.notifyItemChanged(position);
+    }
+
+    public class TimeTaskBean {
+        public String time;
+        public boolean isPauseAnim;
     }
 }
