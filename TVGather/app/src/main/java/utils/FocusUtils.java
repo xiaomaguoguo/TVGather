@@ -36,19 +36,19 @@ public class FocusUtils {
 
     public static void onFocusChangeStill(View view, boolean b) {
         if(b){
-            ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 1.02f, 1.0f, 1.02f,
+            ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
             scaleAnimation.setFillAfter(true);
-            scaleAnimation.setDuration(250);
+            scaleAnimation.setDuration(300);
             scaleAnimation.setInterpolator(new DecelerateInterpolator());
             view.startAnimation(scaleAnimation);
         }else {
-            ScaleAnimation scaleAnimation = new ScaleAnimation(1.02f, 1.0f, 1.02f, 1.0f,
+            ScaleAnimation scaleAnimation = new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
             scaleAnimation.setFillAfter(true);
-            scaleAnimation.setDuration(250);
+            scaleAnimation.setDuration(100);
             scaleAnimation.setInterpolator(new DecelerateInterpolator());
             view.startAnimation(scaleAnimation);
         }
@@ -58,7 +58,7 @@ public class FocusUtils {
         view.setVisibility(b ? View.VISIBLE : View.INVISIBLE);
         AlphaAnimation show = new AlphaAnimation( b ? 0.0f : 1.0f , b ? 1.0f : 0.0f);
         show.setFillAfter(true);
-        show.setDuration(300);
+        show.setDuration(b ? 300 : 100);
         show.setInterpolator(new DecelerateInterpolator());
         view.startAnimation(show);
     }

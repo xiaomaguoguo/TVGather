@@ -25,6 +25,11 @@ public class CateFragment extends Fragment {
 
     private CateRecycleViewAdapter mAdapter;
 
+    public static CateFragment newInstance() {
+        CateFragment fragment = new CateFragment();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class CateFragment extends Fragment {
     }
 
 
+    private boolean isFirstFlag = true;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -48,6 +54,22 @@ public class CateFragment extends Fragment {
         }
         mAdapter = new CateRecycleViewAdapter(datas);
         mRecycleView.setAdapter(mAdapter);
+
+
+        mRecycleView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+                if (isFirstFlag){
+                    mRecycleView.findViewHolderForAdapterPosition(0).itemView.requestFocus();
+                    isFirstFlag = false;
+                }
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+
+            }
+        });
 
     }
 }

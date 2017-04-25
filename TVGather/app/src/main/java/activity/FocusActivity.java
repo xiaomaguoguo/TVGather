@@ -27,16 +27,16 @@ public class FocusActivity extends Activity {
         setContentView(R.layout.focus_layout);
 
 
-        focusBorder = findViewById(R.id.focusBorder);
-        Button btnFocus = (Button) findViewById(R.id.btnFocus);
-        btnFocus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FocusUtils.onFocusChangeStill(findViewById(R.id.bg),show);
-                FocusUtils.showOrHidden(focusBorder,show);
-//                FocusUtils.kkkk(focusBorder,show);
-                show = !show;
-            }
-        });
+//        focusBorder = findViewById(R.id.focusBorder);
+//        Button btnFocus = (Button) findViewById(R.id.btnFocus);
+//        btnFocus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FocusUtils.onFocusChangeStill(findViewById(R.id.bg),show);
+//                FocusUtils.showOrHidden(focusBorder,show);
+////                FocusUtils.kkkk(focusBorder,show);
+//                show = !show;
+//            }
+//        });
     }
 }

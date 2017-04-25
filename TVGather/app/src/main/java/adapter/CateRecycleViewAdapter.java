@@ -9,6 +9,8 @@ import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
 
+import utils.FocusUtils;
+
 /**
  * Created by KNothing on 2017/4/15.
  * 美食适配器
@@ -39,8 +41,18 @@ public class CateRecycleViewAdapter extends RecyclerView.Adapter<CateRecycleView
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
 //        holder.btn.setText(datas.get(position));
+        holder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+//                holder.focusFrame.setVisibility(hasFocus ? View.VISIBLE : View.INVISIBLE);
+//                FocusUtils.onFocusChangeStill(holder.itemView,hasFocus);
+                FocusUtils.showOrHidden(holder.focusFrame,hasFocus);
+                FocusUtils.onFocusChangeStill(holder.bg,hasFocus);
+//                FocusUtils.onFocusChangeStill(holder.focusFrame,hasFocus);
+            }
+        });
     }
 
     @Override
@@ -57,9 +69,13 @@ public class CateRecycleViewAdapter extends RecyclerView.Adapter<CateRecycleView
     static class MyHolder extends RecyclerView.ViewHolder{
 
 //        Button btn;
+        View focusFrame;
+        View bg ;
 
         public MyHolder(View itemView) {
             super(itemView);
+            focusFrame = itemView.findViewWithTag("frame");
+            bg = itemView.findViewById(R.id.bg);
 //            btn = (Button) itemView.findViewById(R.id.content_text);
         }
     }

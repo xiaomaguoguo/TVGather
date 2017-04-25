@@ -12,6 +12,11 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnCate"
+                style="@style/BtnStyle"
+                android:text="美食？" />
+
+            <Button
                 android:id="@+id/btnSoundPool"
                 style="@style/BtnStyle"
                 android:text="SoundPool" />

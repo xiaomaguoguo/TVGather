@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.bftv.knothing.firsttv.R;
 
+import fragment.CateFragment;
 import fragment.SoundPoolFragment;
 import fragment.TimeCountFragment;
 
@@ -24,7 +25,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnFocus,btnTimeCount,btnRecycle,btnSoundPool;
+    private Button btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,11 +36,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnTimeCount = (Button) findViewById(R.id.btnTimeCount);
         btnRecycle = (Button) findViewById(R.id.btnRecycle);
         btnSoundPool = (Button) findViewById(R.id.btnSoundPool);
+        btnCate = (Button) findViewById(R.id.btnCate);
 
         btnFocus.setOnClickListener(this);
         btnTimeCount.setOnClickListener(this);
         btnRecycle.setOnClickListener(this);
         btnSoundPool.setOnClickListener(this);
+        btnCate.setOnClickListener(this);
 
     }
 
@@ -51,6 +54,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         FragmentTransaction ft = fm.beginTransaction();
 
         switch (v.getId()){
+
+            case R.id.btnCate: // 美食
+                ft.replace(R.id.container, CateFragment.newInstance());
+                ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
+                ft.commit();
+                break;
 
             case R.id.btnSoundPool: // SoundPool测试
                 ft.replace(R.id.container, SoundPoolFragment.newInstance());
