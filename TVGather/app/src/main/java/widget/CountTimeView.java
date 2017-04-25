@@ -262,7 +262,7 @@ public class CountTimeView extends View implements View.OnClickListener  {
 
                 break;
             case TextStyle.CLOCK:
-                displayText = getClockByLong((long) (mCountTime * (1 - mCurrentValue)));
+                displayText = methodTime2((long) (mCountTime * (1 - mCurrentValue)));
                 break;
             case TextStyle.JUMP:
                 if (!TextUtils.isEmpty(mTitleCenter)) {
@@ -342,41 +342,27 @@ public class CountTimeView extends View implements View.OnClickListener  {
         return (int) (dp * scale + 0.5f);
     }
 
-    public static String getClockByLong(long finishTime) {
-
-        int totalTime = (int) (finishTime / 1000);//秒
-        int hour = 0, minute = 0, second = 0;
-
-        if (3600 <= totalTime) {
-            hour = totalTime / 3600;
-            totalTime = totalTime - 3600 * hour;
-        }
-        if (60 <= totalTime) {
-            minute = totalTime / 60;
-            totalTime = totalTime - 60 * minute;
-        }
-        if (0 <= totalTime) {
-            second = totalTime;
-        }
+    // a integer to xx:xx:xx
+    public static String methodTime2(long time){
+        long hour = time / 3600;
+        long minute = time / 60 % 60;
+        long second = time % 60;
         StringBuilder sb = new StringBuilder();
-
-        if (hour < 10) {
-            sb.append("0").append(hour).append(":");
-        } else {
-            sb.append(hour).append(":");
-        }
-        if (minute < 10) {
-            sb.append("0").append(minute).append(":");
-        } else {
-            sb.append(hour).append(":");
-        }
-        if (second < 10) {
-            sb.append("0").append(second);
-        } else {
-            sb.append(second);
-        }
+        sb.append(unitFormat(hour));
+        sb.append(":");
+        sb.append(unitFormat(minute));
+        sb.append(":");
+        sb.append(unitFormat(second));
         return sb.toString();
+    }
 
+    public static String unitFormat(long i) {
+        String retStr = null;
+        if (i >= 0 && i < 10)
+            retStr = "0" + Long.toString(i);
+        else
+            retStr = "" + i;
+        return retStr;
     }
 
     /**
