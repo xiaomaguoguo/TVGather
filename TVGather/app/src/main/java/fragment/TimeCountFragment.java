@@ -143,8 +143,9 @@ public class TimeCountFragment extends Fragment {
 //        ttb.time = "10000";
 //        ttb.isPauseAnim = true;
 //        datas.add(position,ttb);
-        datas.get(position).isPauseAnim = true;
-        datas.get(position).time = "10000";
+//        datas.get(position).isPauseAnim = true;
+//        datas.get(position).time = "100000";
+        datas.get(position).time = "462574";
         mAdapter.notifyItemChanged(position);
     }
 

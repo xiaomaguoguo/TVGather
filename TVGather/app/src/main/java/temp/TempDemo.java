@@ -12,6 +12,11 @@ import java.util.Date;
 public class TempDemo {
     public static void main(String [] args){
 
+        long system = System.currentTimeMillis();
+        long user = 1493129276000l;
+        long kkk = system - user;
+        System.out.println("KKK = " + kkk);
+
         convertUpOrDown();
 
         timeTest();
