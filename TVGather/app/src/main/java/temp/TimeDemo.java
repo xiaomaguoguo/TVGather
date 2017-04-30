@@ -7,8 +7,15 @@ package temp;
 public class TimeDemo {
 
     public static void main(String [] args){
+
+        long system = System.currentTimeMillis();
+        long user = 1493139744000l;
+
+
+
+
         System.out.println("转化后为："  + secToTime(1800));
-        System.out.println("转化后为2："  + methodTime2(600));
+        System.out.println("转化后为2："  + methodTime2(5 * 60));
     }
 
     // a integer to xx:xx:xx

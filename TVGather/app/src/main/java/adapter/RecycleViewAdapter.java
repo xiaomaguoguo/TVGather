@@ -11,6 +11,8 @@ import com.bftv.knothing.firsttv.R;
 
 import java.util.ArrayList;
 
+import utils.FocusUtils;
+
 /**
  * Created by KNothing on 2017/4/14.
  */
@@ -49,6 +51,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.btn.setText(datas.get(position));
         Log.i("KKK","onBindViewHolder");
+        holder.btn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                FocusUtils.onFocusChangeStill(v,hasFocus);
+            }
+        });
     }
 
     @Override
