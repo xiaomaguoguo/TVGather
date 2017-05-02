@@ -1,5 +1,6 @@
 package temp;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,6 +24,30 @@ public class TempDemo {
 
         ymd();
 
+        formatMath();
+
+        futureTime();
+
+    }
+
+    private static void futureTime() {
+        long pre =1493551146990l;
+        long system = System.currentTimeMillis();
+        long temp = 1493554913000l;
+        System.out.println("System = "+ String.valueOf(system - pre));
+
+        long kkk = system + 171244;
+        System.out.println("System2 ==== "+ String.valueOf(kkk));
+
+
+
+
+    }
+
+    private static void formatMath() {
+        double sss = -8.16223423423;
+        String result = String.format("%.2f",sss);
+        System.out.println("保留小数后两位 result =  "+ result);
     }
 
     private static void ymd() {
