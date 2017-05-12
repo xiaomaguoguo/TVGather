@@ -1,5 +1,9 @@
 package temp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by MaZhihua on 2017/4/25.
  */
@@ -7,15 +11,23 @@ package temp;
 public class TimeDemo {
 
     public static void main(String [] args){
+        long temp = 1506787200000l;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("date = "+ dateFormat.format(new Date(temp)));
+
+        String kkk = "-0.25";
+        System.out.println("kkk = " + (Float.valueOf(kkk) > 0 ? true : false));
+
 
         long system = System.currentTimeMillis();
         long user = 1493139744000l;
+        long hour24 = 24 * 60 * 60 * 1000;
+        int a = 199/4;
 
-
-
-
+        System.out.println("24小时转化为毫秒为："  + hour24);
         System.out.println("转化后为："  + secToTime(1800));
-        System.out.println("转化后为2："  + methodTime2(5 * 60));
+        System.out.println("转化后为2："  + methodTime2(24 * 60 * 60));
+        System.out.println("页码测试："  + a);
     }
 
     // a integer to xx:xx:xx
