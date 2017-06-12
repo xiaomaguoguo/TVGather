@@ -13,9 +13,19 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnJs"
+                style="@style/BtnStyle"
+                android:text="JS通信" />
+
+            <Button
+                android:id="@+id/btnUpload"
+                style="@style/BtnStyle"
+                android:text="测试上传" />
+
+            <Button
                 android:id="@+id/btnOpenXiaoBanL"
                 style="@style/BtnStyle"
-                android:text="打开魔幻王国" />
+                android:text="打开MHWL" />
 
             <Button
                 android:id="@+id/btnKeyEvent"

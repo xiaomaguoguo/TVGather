@@ -13,6 +13,9 @@ import java.util.Date;
 public class TempDemo {
     public static void main(String [] args){
 
+        String dbName = "test_%s.db";
+        System.out.println("dbName = " + String.format(dbName,""));
+
         long system = System.currentTimeMillis();
         long user = 1493129276000l;
         long kkk = system - user;

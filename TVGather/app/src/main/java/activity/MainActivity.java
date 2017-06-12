@@ -27,13 +27,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnJs = (Button) findViewById(R.id.btnJs);
         btnOpenXiaoBanL = (Button) findViewById(R.id.btnOpenXiaoBanL);
         btnKeyEvent = (Button) findViewById(R.id.btnKeyEvent);
         btnFocus = (Button) findViewById(R.id.btnFocus);
@@ -42,6 +43,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool = (Button) findViewById(R.id.btnSoundPool);
         btnCate = (Button) findViewById(R.id.btnCate);
 
+        btnJs.setOnClickListener(this);
         btnOpenXiaoBanL.setOnClickListener(this);
         btnKeyEvent.setOnClickListener(this);
         btnFocus.setOnClickListener(this);
@@ -60,6 +62,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         FragmentTransaction ft = fm.beginTransaction();
 
         switch (v.getId()){
+
+            case R.id.btnJs: // js互调
+                Intent javaJsIntent = new Intent(this,JavaJsActivity.class);
+                startActivity(javaJsIntent);
+                break;
 
             case R.id.btnOpenXiaoBanL:
                 PackageManager pm = getPackageManager();
