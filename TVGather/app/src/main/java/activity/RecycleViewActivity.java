@@ -60,7 +60,7 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
 
         datas = new ArrayList<>(100);
-        for(int i=0;i<100;i++){
+        for(int i=0;i<101;i++){
             datas.add(String.valueOf(i));
         }
         mAdapter = new RecycleViewAdapter(datas);

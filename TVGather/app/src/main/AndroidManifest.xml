@@ -41,6 +41,7 @@
         <activity android:name="activity.RecycleViewCenterActivity" />
         <activity android:name="activity.RecycleViewActivity"/>
         <activity android:name="activity.JavaJsActivity"/>
+        <service android:name="service.MyIntentService"/>
 
 
     </application>

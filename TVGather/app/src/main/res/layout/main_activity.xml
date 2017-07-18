@@ -4,13 +4,25 @@
     android:layout_height="match_parent">
 
     <HorizontalScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/btnContainer"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnMultiService"
+                style="@style/BtnStyle"
+                android:text="多个IntentServic" />
+
+            <Button
+                android:id="@+id/btnConstraint"
+                style="@style/BtnStyle"
+                android:text="约束布局" />
 
             <Button
                 android:id="@+id/btnJs"

@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,8 +20,10 @@ import android.widget.Button;
 import com.bftv.knothing.firsttv.R;
 
 import fragment.CateFragment;
+import fragment.ConstraintLayoutFragment;
 import fragment.SoundPoolFragment;
 import fragment.TimeCountFragment;
+import service.MyIntentService;
 
 /**
  * Created by KNothing on 2017/4/14.
@@ -27,13 +32,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnMultiService = (Button) findViewById(R.id.btnMultiService);
+        btnConstraint = (Button) findViewById(R.id.btnConstraint);
         btnJs = (Button) findViewById(R.id.btnJs);
         btnOpenXiaoBanL = (Button) findViewById(R.id.btnOpenXiaoBanL);
         btnKeyEvent = (Button) findViewById(R.id.btnKeyEvent);
@@ -43,6 +50,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool = (Button) findViewById(R.id.btnSoundPool);
         btnCate = (Button) findViewById(R.id.btnCate);
 
+        btnMultiService.setOnClickListener(this);
+        btnConstraint.setOnClickListener(this);
         btnJs.setOnClickListener(this);
         btnOpenXiaoBanL.setOnClickListener(this);
         btnKeyEvent.setOnClickListener(this);
@@ -57,11 +66,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
 
-        FragmentManager fm = getSupportFragmentManager();
-
-        FragmentTransaction ft = fm.beginTransaction();
-
         switch (v.getId()){
+
+            case R.id.btnMultiService: // 一次启动多个服务
+                for(int i=0;i<100;i++){
+                    Intent intentservice = new Intent(this,MyIntentService.class);
+                    intentservice.putExtra("mReceiver",new MyResultReceiver(new Handler()));
+                    startService(intentservice);
+                }
+                break;
+
+            case R.id.btnConstraint: // 约束布局
+                commitFragment(ConstraintLayoutFragment.newInstance());
+                break;
 
             case R.id.btnJs: // js互调
                 Intent javaJsIntent = new Intent(this,JavaJsActivity.class);
@@ -80,15 +97,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
 
             case R.id.btnCate: // 美食
-                ft.replace(R.id.container, CateFragment.newInstance());
-                ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
-                ft.commit();
+                commitFragment(CateFragment.newInstance());
                 break;
 
             case R.id.btnSoundPool: // SoundPool测试
-                ft.replace(R.id.container, SoundPoolFragment.newInstance());
-                ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
-                ft.commit();
+                commitFragment(SoundPoolFragment.newInstance());
                 break;
 
             case R.id.btnFocus: //焦点测试
@@ -97,9 +110,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
 
             case R.id.btnTimeCount: // 倒计时
-                ft.replace(R.id.container, TimeCountFragment.newInstance(null));
-                ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
-                ft.commit();
+                commitFragment(TimeCountFragment.newInstance(null));
                 break;
 
             case R.id.btnRecycle: // RecycleView相关
@@ -108,6 +119,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
 
         }
+    }
+
+    private void commitFragment(Fragment fragment){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container,fragment);
+        ft.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
+        ft.commit();
+
     }
 
     @Override
@@ -139,4 +159,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         return super.onKeyDown(keyCode, event);
     }
 
+    private class MyResultReceiver extends ResultReceiver{
+
+        /**
+         * Create a new ResultReceive to receive results.  Your
+         * {@link #onReceiveResult} method will be called from the thread running
+         * <var>handler</var> if given, or from an arbitrary thread if null.
+         *
+         * @param handler
+         */
+        public MyResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            btnMultiService.setText(resultData.getString("count"));
+        }
+    }
 }
