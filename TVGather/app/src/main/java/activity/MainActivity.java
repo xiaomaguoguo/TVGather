@@ -31,13 +31,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnDownload = (Button) findViewById(R.id.btnDownload);
         btnMultiService = (Button) findViewById(R.id.btnMultiService);
         btnConstraint =  (Button) findViewById(R.id.btnConstraint);
         btnJs =  (Button) findViewById(R.id.btnJs);
@@ -49,6 +50,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
 
+        btnDownload.setOnClickListener(this);
         btnMultiService.setOnClickListener(this);
         btnConstraint.setOnClickListener(this);
         btnJs.setOnClickListener(this);
@@ -66,6 +68,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnDownload: // 断点下载
+                startActivity(new Intent(this,DownloadActivity.class));
+                break;
 
             case R.id.btnMultiService: // 一次启动多个服务
                 for(int i=0;i<100;i++){

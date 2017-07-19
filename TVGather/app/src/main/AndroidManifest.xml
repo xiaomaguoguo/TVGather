@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -38,6 +40,7 @@
         </activity>
 
         <activity android:name="activity.FocusActivity" />
+        <activity android:name="activity.DownloadActivity" />
         <activity android:name="activity.RecycleViewCenterActivity" />
         <activity android:name="activity.RecycleViewActivity"/>
         <activity android:name="activity.JavaJsActivity"/>

@@ -1,12 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply from: '../maven_push.gradle'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.bftv.fui.downloadlib"
+//        applicationId "com.bftv.fui.downloadlib"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
@@ -20,6 +20,6 @@ android {
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-}
+//dependencies {
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+//}
