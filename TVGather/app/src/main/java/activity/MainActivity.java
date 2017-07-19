@@ -38,16 +38,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        btnMultiService = findViewById(R.id.btnMultiService);
-        btnConstraint =  findViewById(R.id.btnConstraint);
-        btnJs =  findViewById(R.id.btnJs);
-        btnOpenXiaoBanL =  findViewById(R.id.btnOpenXiaoBanL);
-        btnKeyEvent =  findViewById(R.id.btnKeyEvent);
-        btnFocus =  findViewById(R.id.btnFocus);
-        btnTimeCount =  findViewById(R.id.btnTimeCount);
-        btnRecycle =  findViewById(R.id.btnRecycle);
-        btnSoundPool =  findViewById(R.id.btnSoundPool);
-        btnCate =  findViewById(R.id.btnCate);
+        btnMultiService = (Button) findViewById(R.id.btnMultiService);
+        btnConstraint =  (Button) findViewById(R.id.btnConstraint);
+        btnJs =  (Button) findViewById(R.id.btnJs);
+        btnOpenXiaoBanL =  (Button) findViewById(R.id.btnOpenXiaoBanL);
+        btnKeyEvent =  (Button) findViewById(R.id.btnKeyEvent);
+        btnFocus =  (Button) findViewById(R.id.btnFocus);
+        btnTimeCount =  (Button) findViewById(R.id.btnTimeCount);
+        btnRecycle =  (Button) findViewById(R.id.btnRecycle);
+        btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
+        btnCate =  (Button) findViewById(R.id.btnCate);
 
         btnMultiService.setOnClickListener(this);
         btnConstraint.setOnClickListener(this);
