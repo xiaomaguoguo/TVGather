@@ -6,6 +6,7 @@
     <color name="stock_up_content">#56ba37</color>
     <color name="stock_down_content">#f25260</color>
     <color name="colorGrayDividerLine">#EDEDED</color>
+    <color name="colorAccent">#2a48f5</color>
 
     <color name="black_overlay">#66000000</color>     <!--分割线颜色-->
 
