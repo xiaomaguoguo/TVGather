@@ -14,6 +14,7 @@ import com.bftv.fui.downloadlib.service.DownloadCallback;
 import com.bftv.fui.downloadlib.service.DownloadManager;
 import com.bftv.fui.downloadlib.service.DownloadRunnable;
 import com.bftv.fui.downloadlib.service.DownloadTaskEntity;
+import com.bftv.fui.downloadlib.service.TaskUtils;
 import com.bftv.knothing.firsttv.R;
 
 import java.io.File;
@@ -85,8 +86,7 @@ public class DownloadActivity extends Activity {
          };
 
          DownloadRunnable downloadRunnable = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
-         Thread mThread = new Thread(downloadRunnable);
-         mThread.start();
+         TaskUtils.getLimitedTaskExecutor().execute(downloadRunnable);
          isStart = true;
      };
 
@@ -100,4 +100,9 @@ public class DownloadActivity extends Activity {
          DownloadManager.getInstance().pause(DOWNLOADURL);
      }
 
- }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TaskUtils.releaseExecutor();
+    }
+}
