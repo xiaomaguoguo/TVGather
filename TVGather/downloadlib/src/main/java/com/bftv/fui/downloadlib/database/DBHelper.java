@@ -1,4 +1,4 @@
-package com.bftv.fui.downloadlib.dbhelper;
+package com.bftv.fui.downloadlib.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

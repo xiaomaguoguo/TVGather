@@ -1,10 +1,9 @@
-package com.bftv.fui.downloadlib.dao;
+package com.bftv.fui.downloadlib.database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.bftv.fui.downloadlib.dbhelper.DBHelper;
 import com.bftv.fui.downloadlib.entity.DownloadInfo;
 
 import java.util.ArrayList;
@@ -12,22 +11,27 @@ import java.util.List;
 
 public class Dao {
 
+	private DBHelper mDBHelper = null;
+
 	private static Dao dao=null;
-	private Context context; 
-	private  Dao(Context context) { 
-		this.context=context;
+
+	public Dao(Context context) {
+		mDBHelper = new DBHelper(context);
 	}
-	public static  Dao getInstance(Context context){
-		if(dao==null){
-			dao=new Dao(context); 
-		}
-		return dao;
-	}
+
+//	public void getInstance(Context context){
+//		if(dao==null){
+//			dao=new Dao(context);
+//		}
+//		return dao;
+//	}
+
 	public  SQLiteDatabase getConnection() {
 		SQLiteDatabase sqliteDatabase = null;
 		try { 
-			sqliteDatabase= new DBHelper(context).getReadableDatabase();
-		} catch (Exception e) {  
+			sqliteDatabase= mDBHelper.getReadableDatabase();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return sqliteDatabase;
 	}
