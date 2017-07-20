@@ -47,7 +47,7 @@ public class DownloadActivity extends ListActivity {
                      LoadInfo loadInfo = (LoadInfo) msg.obj;
                      Log.i("KKK","fileSize = " + loadInfo.getFileSize() + "; completeSize = " + loadInfo.getComplete() );
                      if(loadInfo.getFileSize() == loadInfo.getComplete()){
-                         Toast.makeText(DownloadActivity.this, "+"+ loadInfo.getUrlstring() +"下载完成", Toast.LENGTH_SHORT).show();
+                         Log.i("KKK",loadInfo.getUrlstring() +"下载完成");
                          downloaders.get(loadInfo.getUrlstring()).delete(loadInfo.getUrlstring());
                          downloaders.get(loadInfo.getUrlstring()).reset();
                          downloaders.remove(loadInfo.getUrlstring());
