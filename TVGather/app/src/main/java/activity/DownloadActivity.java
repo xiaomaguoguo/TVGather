@@ -41,6 +41,7 @@ public class DownloadActivity extends Activity {
      /**
       * 响应开始下载按钮的点击事件
       */
+     boolean isStart = false;
      public void startDownload(View v) {
          String savePath = SD_PATH + "WZRY.apk";
          DownloadTaskEntity downloadTaskEntity = new DownloadTaskEntity();
@@ -86,12 +87,16 @@ public class DownloadActivity extends Activity {
          DownloadRunnable downloadRunnable = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
          Thread mThread = new Thread(downloadRunnable);
          mThread.start();
+         isStart = true;
      };
 
      /**
       * 暂停下载
       */
      public void pauseDownload(View v) {
+         if(!isStart){
+             return ;
+         }
          DownloadManager.getInstance().pause(DOWNLOADURL);
      }
 
