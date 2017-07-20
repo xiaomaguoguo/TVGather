@@ -58,7 +58,7 @@ public class Downloader {
         if (isFirst(downloadTaskEntity.downloadUrl)) {
             Log.v("TAG", "isFirst");
             init();
-            int range = fileSize / threadcount;
+            int range = fileSize / 1024 / 1024 > 10  ? fileSize / threadcount : fileSize; // 大于10M用多线程下载，小于10M用单线程
             infos = new ArrayList<>();
             for (int i = 0; i < threadcount - 1; i++) {
                 DownloadEntity info = new DownloadEntity(i, i * range, (i + 1) * range - 1, 0, downloadTaskEntity.downloadUrl);
