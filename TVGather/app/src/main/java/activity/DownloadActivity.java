@@ -1,193 +1,98 @@
 package activity;
 
-import android.app.ListActivity;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bftv.fui.downloadlib.entity.LoadInfo;
+import com.bftv.fui.downloadlib.entity.LoadEntity;
+import com.bftv.fui.downloadlib.service.DownloadCallback;
+import com.bftv.fui.downloadlib.service.DownloadManager;
 import com.bftv.fui.downloadlib.service.DownloadRunnable;
-import com.bftv.fui.downloadlib.service.Downloader;
+import com.bftv.fui.downloadlib.service.DownloadTaskEntity;
 import com.bftv.knothing.firsttv.R;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
 
-import adapter.DownLoadAdapter;
+public class DownloadActivity extends Activity {
 
-public class DownloadActivity extends ListActivity {
+    public static final String TAG = DownloadActivity.class.getSimpleName();
 
-     // 固定下载的资源路径，这里可以设置网络上的地址
-     private static final String URL = "http://download.haozip.com/";
      // 固定存放下载的音乐的路径：SD卡目录下
      private static final String SD_PATH = "/mnt/sdcard/";
-     // 存放各个下载器
-     private ArrayMap<String, Downloader> downloaders = new ArrayMap<>();
-     // 存放与下载器对应的进度条
-//     private ArrayMap<String, ProgressBar> ProgressBars = new ArrayMap<>();
-     /**
-      * 利用消息处理机制适时更新进度条
-      */
-     private Handler mHandler = new Handler() {
-         public void handleMessage(Message msg) {
-             if (msg.what == 1) {
-//                 String url = (String) msg.obj;
-                 int length = msg.arg1;
-//                 ProgressBar bar = ProgressBars.get(url);
-//                 if(downloaders.get(url) != null){
-                     LoadInfo loadInfo = (LoadInfo) msg.obj;
-                     Log.i("KKK","fileSize = " + loadInfo.getFileSize() + "; completeSize = " + loadInfo.getComplete() );
-                     if(loadInfo.getFileSize() == loadInfo.getComplete()){
-                         Log.i("KKK",loadInfo.getUrlstring() +"下载完成");
-                         downloaders.get(loadInfo.getUrlstring()).delete(loadInfo.getUrlstring());
-                         downloaders.get(loadInfo.getUrlstring()).reset();
-                         downloaders.remove(loadInfo.getUrlstring());
-                     }
-//                 }
-//                 if (bar != null) {
-//                     // 设置进度条按读取的length长度更新
-//                     bar.incrementProgressBy(length);
-//                     if (bar.getProgress() == bar.getMax()) {
-//                    	 LinearLayout layout = (LinearLayout) bar.getParent();
-//                    	 TextView resouceName=(TextView)layout.findViewById(R.id.tv_resouce_name);
-//                         Toast.makeText(DownloadActivity.this, "["+resouceName.getText()+"]下载完成！", Toast.LENGTH_SHORT).show();
-//                         // 下载完成后清除进度条并将map中的数据清空
-////                         layout.removeView(bar);
-////                         ProgressBars.remove(url);
-//                         downloaders.get(url).delete(url);
-//                         downloaders.get(url).reset();
-//                         downloaders.remove(url);
-//
-//                         Button btn_start=(Button)layout.findViewById(R.id.btn_start);
-//                         Button btn_pause=(Button)layout.findViewById(R.id.btn_pause);
-//                         btn_pause.setVisibility(View.GONE);
-//                         btn_start.setVisibility(View.GONE);
-//                     }
-//                 }
-             }
-         }
-     };
+
+    //王者荣耀apk下载地址
+     public static final String DOWNLOADURL = "http://dlied5.myapp.com/myapp/1104466820/sgame/2017_com.tencent.tmgp.sgame_h100_1.20.1.21.apk";
+
+    private TextView tv_resouce_name = null;
+
      @Override
      public void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
-         setContentView(R.layout.main); 
-         showListView();
+         setContentView(R.layout.download);
+         tv_resouce_name = (TextView) findViewById(R.id.tv_resouce_name);
      }
-     // 显示listView，这里可以随便添加
-     private void showListView() {
-         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
-         Map<String, String> map = new HashMap<String, String>();
-         map.put("name", "haozip_v3.1.exe");
-         data.add(map);
-         map = new HashMap<String, String>();
-         map.put("name", "haozip_v3.1_hj.exe");
-         data.add(map);
-         map = new HashMap<String, String>();
-         map.put("name", "haozip_v2.8_x64_tiny.exe");
-         data.add(map);
-         map = new HashMap<String, String>();
-         map.put("name", "haozip_v2.8_tiny.exe");
-         data.add(map);
-         DownLoadAdapter adapter=new DownLoadAdapter(this,data);
-         setListAdapter(adapter);
-         
-     }
+
+
      /**
       * 响应开始下载按钮的点击事件
       */
      public void startDownload(View v) {
-         // 得到textView的内容 
-         LinearLayout layout = (LinearLayout) v.getParent();
-         String resouceName = ((TextView) layout.findViewById(R.id.tv_resouce_name)).getText().toString();
-         String urlstr = URL + resouceName;
-         String savePath = SD_PATH + resouceName;
-//         设置下载线程数为4，这里是我为了方便随便固定的
-//         String threadcount = "4";
-//         DownloadTask downloadTask=new DownloadTask(v);
-//         downloadTask.execute(urlstr,savePath,threadcount);
+         String savePath = SD_PATH + "WZRY.apk";
+         DownloadTaskEntity downloadTaskEntity = new DownloadTaskEntity();
+         downloadTaskEntity.downloadUrl = DOWNLOADURL;
+         downloadTaskEntity.savePath = savePath;
+         downloadTaskEntity.downloadCallback = new DownloadCallback() {
 
-         DownloadRunnable downloadRunnable = new DownloadRunnable(getApplicationContext(),urlstr,savePath,mHandler,downloaders);
+             @Override
+             public void downloadStart() {
+                //可在此处直接操作UI,此处已回归主线程
+                 Log.i(TAG,"开始下载");
+             }
+
+             @Override
+             public void downloading(LoadEntity loadInfo) {
+                //可在此处直接操作UI,此处已回归主线程
+                 Log.i(TAG,"fileSize = " + loadInfo.getFileSize() + " ; completeSize = " + loadInfo.getComplete());
+                 tv_resouce_name.setText("总：" + loadInfo.getFileSize() + " / "  + "已下载：" + loadInfo.getComplete());
+             }
+
+             @Override
+             public void downloadSuccess(DownloadTaskEntity downloadTaskEntity) {
+                 //可在此处直接操作UI,此处已回归主线程
+                 Log.i(TAG,downloadTaskEntity.downloadUrl +"下载完成");
+                 tv_resouce_name.setText("下载完成");
+                 DownloadManager.getInstance().delete(downloadTaskEntity.downloadUrl);
+                 Intent intent = new Intent();
+                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 intent.setAction(android.content.Intent.ACTION_VIEW);
+                 intent.setDataAndType(Uri.fromFile(new File(downloadTaskEntity.savePath)),"application/vnd.android.package-archive");
+                 startActivity(intent);
+             }
+
+             @Override
+             public void downloadFailed(DownloadTaskEntity downloadTaskEntity) {
+                //可在此处直接操作UI,此处已回归主线程
+                 Toast.makeText(DownloadActivity.this, "下载失败，请看失败日志", Toast.LENGTH_SHORT).show();
+                 Log.i(TAG,"下载失败，失败原因 ：" + downloadTaskEntity.failedCause);
+             }
+
+         };
+
+         DownloadRunnable downloadRunnable = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
          Thread mThread = new Thread(downloadRunnable);
          mThread.start();
-
-
      };
-//    class DownloadTask extends AsyncTask<String, Integer, LoadInfo>{
-//    	Downloader downloader=null;
-//    	View v=null;
-//    	String urlstr=null;
-//    	public DownloadTask(final View v){
-//    		this.v=v;
-//    	}
-
-//    	@Override
-//    	protected void onPreExecute() {
-//
-//    	}
-//		@Override
-//		protected LoadInfo doInBackground(String... params) {
-//			urlstr=params[0];
-//			String localfile=params[1];
-//			int threadcount=Integer.parseInt(params[2]);
-			 // 初始化一个downloader下载器
-//	         downloader = downloaders.get(urlstr);
-//	         if (downloader == null) {
-//	             downloader = new Downloader(urlstr, localfile, threadcount, DownloadActivity.this, mHandler);
-//	             downloaders.put(urlstr, downloader);
-//	         }
-//	         if (downloader.isdownloading())
-//	        	 return null;
-	         // 得到下载信息类的个数组成集合
-//	         return downloader.getDownloaderInfors();
-//		}
-//		@Override
-//		protected void onPostExecute(LoadInfo loadInfo) {
-//			if(loadInfo!=null){
-//				 // 显示进度条
-//		         showProgress(loadInfo, urlstr, v);
-//		         // 调用方法开始下载
-//		         downloader.download();
-//			}
-//		}
-//
-//	 };
 
      /**
-      * 显示进度条
-      */
-     private void showProgress(LoadInfo loadInfo, String url, View v) {
-//         ProgressBar bar = ProgressBars.get(url);
-//         if (bar == null) {
-//             bar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-//             bar.setMax(loadInfo.getFileSize());
-//             bar.setProgress(loadInfo.getComplete());
-//             ProgressBars.put(url, bar);
-//             LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT, 5);
-//             ((LinearLayout) ((LinearLayout) v.getParent()).getParent()).addView(bar, params);
-//         }
-     }
-
-
-     /**
-      * 响应暂停下载按钮的点击事件
+      * 暂停下载
       */
      public void pauseDownload(View v) {
-         LinearLayout layout = (LinearLayout) v.getParent();
-         String resouceName = ((TextView) layout.findViewById(R.id.tv_resouce_name)).getText().toString();
-         String urlstr = URL + resouceName;
-         downloaders.get(urlstr).pause();
-         Button btn_start=(Button)((View)v.getParent()).findViewById(R.id.btn_start);
- 		 Button btn_pause=(Button)((View)v.getParent()).findViewById(R.id.btn_pause);
-         btn_pause.setVisibility(View.GONE);
-         btn_start.setVisibility(View.VISIBLE);
+         DownloadManager.getInstance().pause(DOWNLOADURL);
      }
+
  }

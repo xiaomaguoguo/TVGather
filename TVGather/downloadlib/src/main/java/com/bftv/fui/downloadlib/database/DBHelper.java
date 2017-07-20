@@ -4,6 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+
+/**
+ * Created by KNothing on 2017/7/19.
+ * 数据库
+ */
 public class DBHelper extends SQLiteOpenHelper {
 
     //download.db-->数据库名

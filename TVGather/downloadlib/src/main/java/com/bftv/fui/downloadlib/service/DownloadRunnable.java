@@ -1,68 +1,40 @@
 package com.bftv.fui.downloadlib.service;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.ArrayMap;
 
-import com.bftv.fui.downloadlib.entity.LoadInfo;
+import com.bftv.fui.downloadlib.entity.LoadEntity;
 
 /**
  * Created by KNothing on 2017/7/19.
+ * 下载任务具体的实现逻辑类
  */
 public class DownloadRunnable implements Runnable {
 
     private Context mContext = null;
 
-    private String urlStr = null;
-
-    private String savePath = null;
-
-    private int threadCount = 4;
-
     private Downloader downloader = null;
 
-    private Handler mHandler = null;
+    private DownloadTaskEntity downloadTaskEntity = null;
 
-    private ArrayMap<String, Downloader> downloaders = null;
-
-    public DownloadRunnable(Context context,String urlstr, String savePath, Handler mHandler, ArrayMap<String, Downloader> downloaders){
+    public DownloadRunnable(Context context,DownloadTaskEntity downloadTaskEntity){
         this.mContext = context;
-        this.urlStr = urlstr;
-        this.savePath = savePath;
-        this.mHandler = mHandler;
-        this.downloaders = downloaders;
+        this.downloadTaskEntity = downloadTaskEntity;
     }
 
     @Override
     public void run() {
-        executeStart();
-        executeTask();
-        executeAfter();
-    }
-
-    private void executeStart() {
-//        Button btn_start=(Button)((View)v.getParent()).findViewById(R.id.btn_start);
-//        Button btn_pause=(Button)((View)v.getParent()).findViewById(R.id.btn_pause);
-//        btn_start.setVisibility(View.GONE);
-//        btn_pause.setVisibility(View.VISIBLE);
-    }
-
-    private void executeTask() {
-        downloader = downloaders.get(urlStr);
+        downloader = DownloadManager.getInstance().get(downloadTaskEntity.downloadUrl);
         if (downloader == null) {
-            downloader = new Downloader(urlStr, savePath, threadCount, mContext, mHandler);
-            downloaders.put(urlStr, downloader);
+            downloader = new Downloader(mContext,downloadTaskEntity);
+            DownloadManager.getInstance().put(downloadTaskEntity.downloadUrl, downloader);
         }
+
+
         if (!downloader.isdownloading()){
-            LoadInfo loadInfo = downloader.getDownloaderInfors();
-//            bar.setMax(loadInfo.getFileSize());
-//            bar.setProgress(loadInfo.getComplete());
+            downloader.getDownloaderInfors();
             downloader.download();
         }
     }
-
-    private void executeAfter() {
-    }
-
 
 }

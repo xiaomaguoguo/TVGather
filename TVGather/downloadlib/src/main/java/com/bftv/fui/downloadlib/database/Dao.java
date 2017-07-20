@@ -4,11 +4,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.bftv.fui.downloadlib.entity.DownloadInfo;
+import com.bftv.fui.downloadlib.entity.DownloadEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by KNothing on 2017/7/19.
+ * 数据库记录操作类
+ */
 public class Dao {
 
 	private DBHelper mDBHelper = null;
@@ -65,10 +69,10 @@ public class Dao {
 	/**
 	 * 保存 下载的具体信息
 	 */
-	public synchronized void saveInfos(List<DownloadInfo> infos) {
+	public synchronized void saveInfos(List<DownloadEntity> infos) {
 		SQLiteDatabase database = getConnection();
 		try {
-			for (DownloadInfo info : infos) {
+			for (DownloadEntity info : infos) {
 				String sql = "insert into download_info(thread_id,start_pos, end_pos,compelete_size,url) values (?,?,?,?,?)";
 				Object[] bindArgs = { info.getThreadId(), info.getStartPos(),
 						info.getEndPos(), info.getCompeleteSize(),
@@ -87,15 +91,15 @@ public class Dao {
 	/**
 	 * 得到下载具体信息
 	 */
-	public synchronized List<DownloadInfo> getInfos(String urlstr) {
-		List<DownloadInfo> list = new ArrayList<DownloadInfo>();
+	public synchronized List<DownloadEntity> getInfos(String urlstr) {
+		List<DownloadEntity> list = new ArrayList<DownloadEntity>();
 		SQLiteDatabase database = getConnection();
 		Cursor cursor = null;
 		try {
 			String sql = "select thread_id, start_pos, end_pos,compelete_size,url from download_info where url=?";
 			cursor = database.rawQuery(sql, new String[] { urlstr });
 			while (cursor.moveToNext()) {
-				DownloadInfo info = new DownloadInfo(cursor.getInt(0),
+				DownloadEntity info = new DownloadEntity(cursor.getInt(0),
 						cursor.getInt(1), cursor.getInt(2), cursor.getInt(3),
 						cursor.getString(4));
 				list.add(info);

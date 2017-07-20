@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_resouce_name"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="测试王者荣耀下载"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1.5"
+        android:onClick="startDownload"
+        android:text="下载" />
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1.5"
+        android:onClick="pauseDownload"
+        android:text="暂停" />
+</LinearLayout>

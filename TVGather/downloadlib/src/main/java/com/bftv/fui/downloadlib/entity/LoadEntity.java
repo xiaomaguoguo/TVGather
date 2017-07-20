@@ -1,20 +1,22 @@
 package com.bftv.fui.downloadlib.entity;
 
 /**
- * 自定义的一个记载下载器详细信息的类
+ * Created by MaZhihua on 2017/7/20.
+ * 记载下载器详细信息
  */
-public class LoadInfo {
+public class LoadEntity {
+
     public int fileSize;//文件大小
     private int complete;//完成度
     private String urlstring;//下载器标识
 
-    public LoadInfo(int fileSize, int complete, String urlstring) {
+    public LoadEntity(int fileSize, int complete, String urlstring) {
         this.fileSize = fileSize;
         this.complete = complete;
         this.urlstring = urlstring;
     }
 
-    public LoadInfo() {
+    public LoadEntity() {
     }
 
     public int getFileSize() {
@@ -43,7 +45,7 @@ public class LoadInfo {
 
     @Override
     public String toString() {
-        return "LoadInfo [fileSize=" + fileSize + ", complete=" + complete
+        return "LoadEntity [fileSize=" + fileSize + ", complete=" + complete
                 + ", urlstring=" + urlstring + "]";
     }
 }

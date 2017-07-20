@@ -16,6 +16,8 @@ public class TempDemo {
         String dbName = "test_%s.db";
         System.out.println("dbName = " + String.format(dbName,""));
 
+        String name = "http://download.haozip.com/haozip_v2.8_tiny.exe";
+
         long system = System.currentTimeMillis();
         long user = 1493129276000l;
         long kkk = system - user;
@@ -30,6 +32,8 @@ public class TempDemo {
         formatMath();
 
         futureTime();
+
+        System.out.println(name.substring(name.lastIndexOf("/") + 1));
 
     }
 

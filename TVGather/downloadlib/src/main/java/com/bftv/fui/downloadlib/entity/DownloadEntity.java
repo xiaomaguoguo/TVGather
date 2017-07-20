@@ -1,9 +1,10 @@
 package com.bftv.fui.downloadlib.entity;
 
 /**
- * 创建一个下载信息的实体类
+ * Created by KNothing on 2017/7/19.
+ * 下载信息的实体
  */
-public class DownloadInfo {
+public class DownloadEntity {
 
     private int threadId;//下载器id
     private int startPos;//开始点
@@ -11,8 +12,8 @@ public class DownloadInfo {
     private int compeleteSize;//完成度
     private String url;//下载器网络标识
 
-    public DownloadInfo(int threadId, int startPos, int endPos,
-                        int compeleteSize, String url) {
+    public DownloadEntity(int threadId, int startPos, int endPos,
+                          int compeleteSize, String url) {
         this.threadId = threadId;
         this.startPos = startPos;
         this.endPos = endPos;
@@ -20,7 +21,7 @@ public class DownloadInfo {
         this.url = url;
     }
 
-    public DownloadInfo() {
+    public DownloadEntity() {
     }
 
     public String getUrl() {
@@ -65,7 +66,7 @@ public class DownloadInfo {
 
     @Override
     public String toString() {
-        return "DownloadInfo [threadId=" + threadId
+        return "DownloadEntity [threadId=" + threadId
                 + ", startPos=" + startPos + ", endPos=" + endPos
                 + ", compeleteSize=" + compeleteSize + "]";
     }
