@@ -46,6 +46,9 @@ public class DownloadManager {
     }
 
     public void pause(String downloadUrl){
+        if(downloaders.get(downloadUrl) == null){
+            return;
+        }
         downloaders.get(downloadUrl).pause();
     }
 
