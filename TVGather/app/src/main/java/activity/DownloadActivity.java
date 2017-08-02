@@ -68,7 +68,6 @@ public class DownloadActivity extends Activity {
                  //可在此处直接操作UI,此处已回归主线程
                  Log.i(TAG,downloadTaskEntity.downloadUrl +"下载完成");
                  tv_resouce_name.setText("下载完成");
-                 DownloadManager.getInstance().delete(downloadTaskEntity.downloadUrl);
                  Intent intent = new Intent();
                  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                  intent.setAction(android.content.Intent.ACTION_VIEW);
