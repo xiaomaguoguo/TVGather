@@ -40,6 +40,9 @@ public class DownloadManager {
      * @param downloadUrl
      */
     public void delete(String downloadUrl){
+        if(downloaders.get(downloadUrl) == null){
+            return;
+        }
         downloaders.get(downloadUrl).delete(downloadUrl);
         downloaders.get(downloadUrl).reset();
         downloaders.remove(downloadUrl);
