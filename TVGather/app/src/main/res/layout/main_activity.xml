@@ -17,7 +17,7 @@
             <Button
                 android:id="@+id/btnAccessClick"
                 style="@style/BtnStyle"
-                android:text="辅助点击实现" />
+                android:text="辅助 点击实现" />
 
             <Button
                 android:id="@+id/btnDownload"
