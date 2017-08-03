@@ -29,7 +29,7 @@ public class MyAccessibilityService extends AccessibilityService {
 //            List<AccessibilityNodeInfo> accessibilityNodeInfos = accessibilityNodeInfo.findAccessibilityNodeInfosByText("播 放");
 //            List<AccessibilityNodeInfo> accessibilityNodeInfos = accessibilityNodeInfo.findAccessibilityNodeInfosByViewId("R.id.ll_full_screen");
             List<AccessibilityNodeInfo> accessibilityNodeInfos = accessibilityNodeInfo.findAccessibilityNodeInfosByViewId("com.pplive.androidxl:id/ll_full_screen");
-//            List<AccessibilityNodeInfo> accessibilityNodeInfos = accessibilityNodeInfo.findAccessibilityNodeInfosByViewId("ll_connection");
+//            List<AccessibilityNodeInfo> accessibilityNodeInfos = accessibilityNodeInfo.findAccessibilityNodeInfosByViewId("com.pplive.androidxl:id/ll_collection");
             if(accessibilityNodeInfos != null && !accessibilityNodeInfos.isEmpty()){
                 Log.d(TAG,"accessibilityNodeInfos != null");
                 AccessibilityNodeInfo needToClickNode = accessibilityNodeInfos.get(0);
