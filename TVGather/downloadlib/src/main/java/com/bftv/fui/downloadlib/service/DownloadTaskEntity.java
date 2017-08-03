@@ -8,6 +8,8 @@ package com.bftv.fui.downloadlib.service;
  * 1.下载状态回调
  * 2.下载请求的URL地址
  * 3.最终下载成功后保存的路径
+ * 4.下载失败的原因
+ * 5.下载该文件需要的线程数量
  *
  */
 public class DownloadTaskEntity {
@@ -24,7 +26,7 @@ public class DownloadTaskEntity {
     //如果下载失败，失败的原因保存在这里
     public String failedCause = null;
 
-    //需要用几个线程来下载该文件，默认为-1，底层实现为3个线程下载，如果嫌慢，可以自定义该值 ，且：必须大于0且大于3
+    //需要用几个线程来下载该文件，默认为-1，底层实现为3个线程下载，如果嫌慢，可以自定义该值 ，且：必须大于0且大于3小于10,请尽量避免自定义线程数量,节省CPU资源
     public int threadCount = -1;
 
 }
