@@ -24,4 +24,7 @@ public class DownloadTaskEntity {
     //如果下载失败，失败的原因保存在这里
     public String failedCause = null;
 
+    //需要用几个线程来下载该文件，默认为-1，底层实现为3个线程下载，如果嫌慢，可以自定义该值 ，且：必须大于0且大于3
+    public int threadCount = -1;
+
 }

@@ -58,6 +58,12 @@ public class Downloader {
         if (isFirst(downloadTaskEntity.downloadUrl)) {
             Log.v("TAG", "isFirst");
             init();
+
+            if(downloadTaskEntity.threadCount != -1 && downloadTaskEntity.threadCount > 3){//如果自定义了线程数量并且大于3，则使用用户自定义的线程数量,加快下载速度
+                threadcount = downloadTaskEntity.threadCount;
+            }
+
+
             int range = fileSize / 1024 / 1024 > 10  ? fileSize / threadcount : fileSize; // 大于10M用多线程下载，小于10M用单线程
             infos = new ArrayList<>();
             for (int i = 0; i < threadcount - 1; i++) {
