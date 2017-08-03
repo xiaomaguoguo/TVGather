@@ -1,11 +1,13 @@
 package activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.bftv.knothing.firsttv.R;
 
@@ -31,13 +34,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnAccessClick,btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnAccessClick = (Button) findViewById(R.id.btnAccessClick);
         btnDownload = (Button) findViewById(R.id.btnDownload);
         btnMultiService = (Button) findViewById(R.id.btnMultiService);
         btnConstraint =  (Button) findViewById(R.id.btnConstraint);
@@ -50,6 +54,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
 
+        btnAccessClick.setOnClickListener(this);
         btnDownload.setOnClickListener(this);
         btnMultiService.setOnClickListener(this);
         btnConstraint.setOnClickListener(this);
@@ -68,6 +73,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnAccessClick: //辅助点击
+                Toast.makeText(this, "被点击了", Toast.LENGTH_SHORT).show();
+//                Intent intent =  new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+//                startActivity(intent);
+                enable(this);
+                break;
 
             case R.id.btnDownload: // 断点下载
                 startActivity(new Intent(this,DownloadActivity.class));
@@ -125,6 +137,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         }
     }
+
+    public static void enable(Context context) {
+        Settings.Secure.putString(context.getContentResolver(),
+                Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
+                context.getPackageName() + "/service.MyAccessibilityService");
+        Settings.Secure.putString(context.getContentResolver(),
+                Settings.Secure.ACCESSIBILITY_ENABLED,
+                "1");
+    }
+
 
     private void commitFragment(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();

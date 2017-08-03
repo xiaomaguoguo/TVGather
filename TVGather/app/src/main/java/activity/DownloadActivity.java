@@ -27,7 +27,8 @@ public class DownloadActivity extends Activity {
      private static final String SD_PATH = "/mnt/sdcard/";
 
     //王者荣耀apk下载地址
-     public static final String DOWNLOADURL = "http://dlied5.myapp.com/myapp/1104466820/sgame/2017_com.tencent.tmgp.sgame_h100_1.20.1.21.apk";
+//     public static final String DOWNLOADURL = "http://dlied5.myapp.com/myapp/1104466820/sgame/2017_com.tencent.tmgp.sgame_h100_1.20.1.21.apk";
+     public static final String DOWNLOADURL = "http://gdown.baidu.com/data/wisegame/74ac7c397e120549/QQ_708.apk";
 
     private TextView tv_resouce_name = null;
 

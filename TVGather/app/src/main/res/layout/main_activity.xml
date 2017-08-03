@@ -15,6 +15,11 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnAccessClick"
+                style="@style/BtnStyle"
+                android:text="辅助点击实现" />
+
+            <Button
                 android:id="@+id/btnDownload"
                 style="@style/BtnStyle"
                 android:text="断点下载" />
