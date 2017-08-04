@@ -191,6 +191,7 @@ public class Downloader {
                     Message execuMsg = myTaskHandler.obtainMessage();
                     if(loadEntity.getComplete() == loadEntity.getFileSize()){ // 下载完成
                         execuMsg.what = MyTaskHandler.IHandlerState.SUCCESS;
+                        DownloadManager.getInstance().delete(downloadTaskEntity.downloadUrl);
                     }else{ // 正在下载
                         execuMsg.what = MyTaskHandler.IHandlerState.DOWNLOADING;
                         execuMsg.obj = loadEntity;
