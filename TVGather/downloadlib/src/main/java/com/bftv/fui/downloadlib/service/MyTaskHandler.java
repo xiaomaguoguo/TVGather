@@ -41,7 +41,6 @@ public class MyTaskHandler extends Handler {
 
             case IHandlerState.SUCCESS: // 下载成功
                 if(!isCallbackNull()){
-                    DownloadManager.getInstance().delete(downloadTaskEntity.downloadUrl);
                     downloadTaskEntity.downloadCallback.downloadSuccess(downloadTaskEntity);
                 }
                 break;
