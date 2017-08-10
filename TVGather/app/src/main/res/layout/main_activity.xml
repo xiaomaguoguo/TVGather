@@ -15,6 +15,16 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnSaveObject"
+                style="@style/BtnStyle"
+                android:text="存储对象" />
+
+            <Button
+                android:id="@+id/btnReadObject"
+                style="@style/BtnStyle"
+                android:text="读取对象" />
+
+            <Button
                 android:id="@+id/btnAccessClick"
                 style="@style/BtnStyle"
                 android:text="辅助 点击实现" />

@@ -45,6 +45,10 @@ public class DownloadActivity extends Activity {
       */
      boolean isStart = false;
      public void startDownload(View v) {
+
+//    <uses-permission android:name="android.permission.INTERNET"/>
+//    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+//    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
          String savePath = SD_PATH + "WZRY.apk";
          DownloadTaskEntity downloadTaskEntity = new DownloadTaskEntity();
          downloadTaskEntity.downloadUrl = DOWNLOADURL;

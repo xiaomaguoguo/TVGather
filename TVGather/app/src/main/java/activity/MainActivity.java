@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.bftv.knothing.firsttv.R;
 
+import java.util.List;
+
+import db.StudentService;
+import entity.Student;
 import fragment.CateFragment;
 import fragment.ConstraintLayoutFragment;
 import fragment.SoundPoolFragment;
@@ -34,13 +38,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnAccessClick,btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnReadObject = (Button) findViewById(R.id.btnReadObject);
+        btnSaveObject = (Button) findViewById(R.id.btnSaveObject);
         btnAccessClick = (Button) findViewById(R.id.btnAccessClick);
         btnDownload = (Button) findViewById(R.id.btnDownload);
         btnMultiService = (Button) findViewById(R.id.btnMultiService);
@@ -54,6 +60,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
 
+        btnReadObject.setOnClickListener(this);
+        btnSaveObject.setOnClickListener(this);
         btnAccessClick.setOnClickListener(this);
         btnDownload.setOnClickListener(this);
         btnMultiService.setOnClickListener(this);
@@ -73,6 +81,36 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnSaveObject://数据库存储对象
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        StudentService saveService = new StudentService(MainActivity.this);
+                        long saveStart = System.currentTimeMillis();
+                        for(int i=0;i<10000;i++){
+                            Student student = new Student("马爷",String.valueOf(i));
+                            saveService.saveObject(student);
+                        }
+                        long saveNow = System.currentTimeMillis();
+                        Log.d(TAG,"保存10000个对象耗时：" + (saveNow - saveStart) + "ms");
+                    }
+                }).start();
+                break;
+
+            case R.id.btnReadObject://读取数据库存储的对象
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        StudentService readService = new StudentService(MainActivity.this);
+                        long readStart = System.currentTimeMillis();
+                        List<Student> student = readService.getObject();
+                        long readNow = System.currentTimeMillis();
+                        Log.d(TAG,"保存10000个对象耗时：" + (readNow - readStart) + "ms");
+
+                    }
+                }).start();
+                break;
 
             case R.id.btnAccessClick: //辅助点击
                 Toast.makeText(this, "被点击了", Toast.LENGTH_SHORT).show();
