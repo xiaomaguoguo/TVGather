@@ -27,16 +27,18 @@ public class DownloadActivity extends Activity {
      private static final String SD_PATH = "/mnt/sdcard/";
 
     //王者荣耀apk下载地址
-//     public static final String DOWNLOADURL = "http://dlied5.myapp.com/myapp/1104466820/sgame/2017_com.tencent.tmgp.sgame_h100_1.20.1.21.apk";
-     public static final String DOWNLOADURL = "http://gdown.baidu.com/data/wisegame/74ac7c397e120549/QQ_708.apk";
+     public static final String DOWNLOADURL = "http://dlied5.myapp.com/myapp/1104466820/sgame/2017_com.tencent.tmgp.sgame_h100_1.20.1.21.apk";
+     public static final String DOWNLOADURL2 = "http://gdown.baidu.com/data/wisegame/74ac7c397e120549/QQ_708.apk";
 
     private TextView tv_resouce_name = null;
+    private TextView tv_resouce_name2 = null;
 
      @Override
      public void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
          setContentView(R.layout.download);
          tv_resouce_name = (TextView) findViewById(R.id.tv_resouce_name);
+         tv_resouce_name2 = (TextView) findViewById(R.id.tv_resouce_name2);
      }
 
 
@@ -88,9 +90,8 @@ public class DownloadActivity extends Activity {
              }
 
          };
-
-         DownloadRunnable downloadRunnable = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
-         TaskUtils.getLimitedTaskExecutor().execute(downloadRunnable);
+         DownloadRunnable downloadRunnable1 = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
+         TaskUtils.getLimitedTaskExecutor().execute(downloadRunnable1);
          isStart = true;
      };
 
@@ -109,4 +110,48 @@ public class DownloadActivity extends Activity {
         super.onDestroy();
         TaskUtils.releaseExecutor();
     }
+
+    /**
+     * QQ开始下载
+     */
+    public void startQQDownload(View v) {
+        String savePath2 = SD_PATH + "QQ.apk";
+        DownloadTaskEntity downloadTaskEntity2 = new DownloadTaskEntity();
+        downloadTaskEntity2.downloadUrl = DOWNLOADURL2;
+        downloadTaskEntity2.savePath = savePath2;
+        downloadTaskEntity2.downloadCallback = new DownloadCallback() {
+            @Override
+            public void downloadStart() {
+                Log.i(TAG,"QQ开始下载");
+            }
+
+            @Override
+            public void downloading(LoadEntity loadInfo) {
+                tv_resouce_name2.setText("总：" + loadInfo.getFileSize() + " / "  + "已下载：" + loadInfo.getComplete());
+            }
+
+            @Override
+            public void downloadSuccess(DownloadTaskEntity downloadTaskEntity) {
+                Log.i(TAG,"QQ下载完成");
+            }
+
+            @Override
+            public void downloadFailed(DownloadTaskEntity downloadTaskEntity) {
+                Log.i(TAG,"QQ下载失败");
+            }
+        };
+        DownloadRunnable downloadRunnable1 = new DownloadRunnable(getApplicationContext(),downloadTaskEntity2);
+        TaskUtils.getLimitedTaskExecutor().execute(downloadRunnable1);
+    }
+
+    /**
+     * 暂停下载
+     */
+    public void pauseQQDownload(View v) {
+        if(!isStart){
+            return ;
+        }
+        DownloadManager.getInstance().pause(DOWNLOADURL2);
+    }
+
 }

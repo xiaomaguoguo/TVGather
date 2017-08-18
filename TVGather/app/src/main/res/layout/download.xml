@@ -4,31 +4,66 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_resouce_name"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="测试王者荣耀下载"
-        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_resouce_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="测试王者荣耀下载"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_weight="1.5"
-        android:onClick="startDownload"
-        android:text="下载" />
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1.5"
+            android:onClick="startDownload"
+            android:text="下载" />
 
-    <Button
-        android:id="@+id/btn_pause"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="16dp"
-        android:layout_weight="1.5"
-        android:onClick="pauseDownload"
-        android:text="暂停" />
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1.5"
+            android:onClick="pauseDownload"
+            android:text="暂停" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_resouce_name2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="测试QQ下载"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_start2"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1.5"
+            android:onClick="startQQDownload"
+            android:text="下载" />
+
+        <Button
+            android:id="@+id/btn_pause2"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1.5"
+            android:onClick="pauseQQDownload"
+            android:text="暂停" />
+    </LinearLayout>
+
 </LinearLayout>
