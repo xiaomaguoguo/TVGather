@@ -3,7 +3,10 @@ package temp;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -12,6 +15,8 @@ import java.util.Date;
 
 public class TempDemo {
     public static void main(String [] args){
+
+        sortCollection();
 
         String dbName = "test_%s.db";
         System.out.println("dbName = " + String.format(dbName,""));
@@ -112,4 +117,28 @@ public class TempDemo {
             w = 0;
         return weekDays[w];
     }
+
+    public static void sortCollection(){
+        ArrayList<Integer> a = new ArrayList<>(9);
+        a.add(9);
+        a.add(1);
+        a.add(3);
+        a.add(2);
+        a.add(6);
+        a.add(5);
+        a.add(8);
+        a.add(7);
+        a.add(4);
+        Collections.sort(a, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 > o2 ? -1 : 0;
+            }
+        });
+
+        for(int b : a){
+            System.out.println("b = " + b);
+        }
+    }
+
 }
