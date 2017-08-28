@@ -6,7 +6,6 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-//        applicationId "com.bftv.fui.downloadlib"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
@@ -19,7 +18,3 @@ android {
         }
     }
 }
-
-//dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
-//}

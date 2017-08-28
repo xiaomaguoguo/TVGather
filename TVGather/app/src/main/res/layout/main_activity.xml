@@ -34,6 +34,11 @@
                 style="@style/BtnStyle"
                 android:text="断点下载" />
 
+            <Button
+                android:id="@+id/btnDownload2"
+                style="@style/BtnStyle"
+                android:text="断点下载实现2" />
+
 
             <Button
                 android:id="@+id/btnMultiService"

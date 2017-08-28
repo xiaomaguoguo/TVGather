@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSaveObject = (Button) findViewById(R.id.btnSaveObject);
         btnAccessClick = (Button) findViewById(R.id.btnAccessClick);
         btnDownload = (Button) findViewById(R.id.btnDownload);
+        btnDownload2 = (Button) findViewById(R.id.btnDownload2);
         btnMultiService = (Button) findViewById(R.id.btnMultiService);
         btnConstraint =  (Button) findViewById(R.id.btnConstraint);
         btnJs =  (Button) findViewById(R.id.btnJs);
@@ -64,6 +65,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSaveObject.setOnClickListener(this);
         btnAccessClick.setOnClickListener(this);
         btnDownload.setOnClickListener(this);
+        btnDownload2.setOnClickListener(this);
         btnMultiService.setOnClickListener(this);
         btnConstraint.setOnClickListener(this);
         btnJs.setOnClickListener(this);
@@ -121,6 +123,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             case R.id.btnDownload: // 断点下载
                 startActivity(new Intent(this,DownloadActivity.class));
+                break;
+
+            case R.id.btnDownload2: //断点下载方式二
+                startActivity(new Intent(this,DownloadActivity2.class));
                 break;
 
             case R.id.btnMultiService: // 一次启动多个服务
