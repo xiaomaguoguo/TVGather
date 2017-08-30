@@ -16,4 +16,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    task makeJar(type: Copy) {
+        delete 'build/libs/kn.jar'
+        from('build/intermediates/bundles/debug/')
+        into('build/libs/')
+        include('classes.jar')
+        rename ('classes.jar', 'kn.jar')
+    }
+
+    makeJar.dependsOn(build)
+
+
+    task proguard(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
+        //  输入路径
+        injars "build/libs/kn.jar"
+        //  输出路径
+//        outjars 'libs/kn_proguard.jar'
+        outjars 'build/http.jar'
+        //  添加配置信息
+        configuration 'proguard-rules.pro'
+    }
+
+
 }
+
