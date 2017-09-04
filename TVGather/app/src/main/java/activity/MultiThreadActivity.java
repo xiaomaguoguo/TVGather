@@ -249,10 +249,6 @@ public class MultiThreadActivity extends Activity {
                  * */
                 // task.executeOnExecutor(limitedTaskExecutor);
 
-                /**
-                 * 不限定指定个数的线程池，也就是说：你往里面放了几个任务，他全部同一时间开始执行， 不管你手机受得了受不了
-                 * */
-                task.executeOnExecutor(allTaskExecutor);
 
                 /**
                  * 创建一个可在指定时间里执行任务的线程池，亦可重复执行
@@ -263,6 +259,12 @@ public class MultiThreadActivity extends Activity {
                  * 创建一个按指定工厂模式来执行任务的线程池,可能比较正规,但也不常用
                  */
                 // task.executeOnExecutor(scheduledTaskFactoryExecutor);
+
+
+                /**
+                 * 不限定指定个数的线程池，也就是说：你往里面放了几个任务，他全部同一时间开始执行， 不管你手机受得了受不了
+                 * */
+                task.executeOnExecutor(allTaskExecutor);
                 mTaskList.add(task);
             }
             return convertView;
