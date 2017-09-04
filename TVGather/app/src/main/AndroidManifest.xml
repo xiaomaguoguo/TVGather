@@ -27,6 +27,7 @@
         <!--android:required="true" />-->
 
     <application
+        android:name="activity.MyApplication"
         android:allowBackup="true"
         android:banner="@drawable/banner"
         android:icon="@mipmap/ic_launcher"
@@ -52,6 +53,11 @@
         <activity android:name="activity.RecycleViewActivity"/>
         <activity android:name="activity.JavaJsActivity"/>
         <service android:name="service.MyIntentService"/>
+        <activity android:name="activity.LoadingDexActivity"
+        android:launchMode= "singleTask"
+        android:process= ":mini"
+        android:alwaysRetainTaskState= "false"
+        android:excludeFromRecents= "true"/>
 
         <service android:name="service.MyAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"

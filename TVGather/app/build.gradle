@@ -9,6 +9,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,4 +35,5 @@ dependencies {
 //    compile 'com.bftv.fui:adsupportlib:1.0.0-SNAPSHOT'
     compile project(':downloadlib') //断点下载实现方式一
     compile project(':download')//断点下载实现方式二
+    compile 'com.android.support:multidex:1.0.1'
 }
