@@ -30,14 +30,6 @@ public class MyApplication extends MultiDexApplication {
     public static final String TAG = MyApplication.class.getSimpleName();
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        if (DexoptUtils.quickStart(this)) {
-            return;
-        }
-    }
-
-    @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         if (!DexoptUtils.quickStart(base) && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//>=5.0的系统默认对dex进行oat优化
@@ -46,6 +38,14 @@ public class MyApplication extends MultiDexApplication {
             }
             MultiDex.install (base );
         } else {
+            return;
+        }
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        if (DexoptUtils.quickStart(this)) {
             return;
         }
     }
