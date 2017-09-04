@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class DownloadActivity extends Activity {
 
     private TextView tv_resouce_name = null;
     private TextView tv_resouce_name2 = null;
+    private ProgressBar progressBar = null;
 
      @Override
      public void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,13 @@ public class DownloadActivity extends Activity {
          setContentView(R.layout.download);
          tv_resouce_name = (TextView) findViewById(R.id.tv_resouce_name);
          tv_resouce_name2 = (TextView) findViewById(R.id.tv_resouce_name2);
+         progressBar = (ProgressBar) findViewById(R.id.progressBar);
      }
 
 
      /**
       * 响应开始下载按钮的点击事件
       */
-     boolean isStart = false;
      public void startDownload(View v) {
 
 //    <uses-permission android:name="android.permission.INTERNET"/>
@@ -92,16 +94,12 @@ public class DownloadActivity extends Activity {
          };
          DownloadRunnable downloadRunnable1 = new DownloadRunnable(getApplicationContext(),downloadTaskEntity);
          TaskUtils.getLimitedTaskExecutor().execute(downloadRunnable1);
-         isStart = true;
      };
 
      /**
       * 暂停下载
       */
      public void pauseDownload(View v) {
-         if(!isStart){
-             return ;
-         }
          DownloadManager.getInstance().pause(DOWNLOADURL);
      }
 
@@ -127,7 +125,10 @@ public class DownloadActivity extends Activity {
 
             @Override
             public void downloading(LoadEntity loadInfo) {
+                progressBar.setMax(loadInfo.getFileSize());
+                progressBar.setProgress(loadInfo.getComplete());
                 tv_resouce_name2.setText("总：" + loadInfo.getFileSize() + " / "  + "已下载：" + loadInfo.getComplete());
+                Log.i(TAG,"总：" + loadInfo.getFileSize() + " / "  + "已下载：" + loadInfo.getComplete());
             }
 
             @Override
@@ -148,9 +149,6 @@ public class DownloadActivity extends Activity {
      * 暂停下载
      */
     public void pauseQQDownload(View v) {
-        if(!isStart){
-            return ;
-        }
         DownloadManager.getInstance().pause(DOWNLOADURL2);
     }
 

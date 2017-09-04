@@ -38,13 +38,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnMultiThread,btnQueenMan,btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnMultiThread = (Button) findViewById(R.id.btnMultiThread);
+        btnQueenMan = (Button) findViewById(R.id.btnQueenMan);
         btnReadObject = (Button) findViewById(R.id.btnReadObject);
         btnSaveObject = (Button) findViewById(R.id.btnSaveObject);
         btnAccessClick = (Button) findViewById(R.id.btnAccessClick);
@@ -61,6 +63,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
 
+        btnMultiThread.setOnClickListener(this);
+        btnQueenMan.setOnClickListener(this);
         btnReadObject.setOnClickListener(this);
         btnSaveObject.setOnClickListener(this);
         btnAccessClick.setOnClickListener(this);
@@ -83,6 +87,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnMultiThread: // 多线程处理
+                startActivity(new Intent(MainActivity.this,MultiThreadActivity.class));
+                break;
+
+            case R.id.btnQueenMan: // 队列处理
+                startActivity(new Intent(MainActivity.this,MyRunnableActivity.class));
+                break;
 
             case R.id.btnSaveObject://数据库存储对象
                 new Thread(new Runnable() {

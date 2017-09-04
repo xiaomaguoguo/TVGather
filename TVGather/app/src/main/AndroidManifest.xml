@@ -44,6 +44,8 @@
         </activity>
 
         <activity android:name="activity.FocusActivity" />
+        <activity android:name="activity.MyRunnableActivity" />
+        <activity android:name="activity.MultiThreadActivity" />
         <activity android:name="activity.DownloadActivity" />
         <activity android:name="activity.DownloadActivity2" />
         <activity android:name="activity.RecycleViewCenterActivity" />

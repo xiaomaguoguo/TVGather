@@ -15,6 +15,16 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnMultiThread"
+                style="@style/BtnStyle"
+                android:text="多线程管理" />
+
+            <Button
+                android:id="@+id/btnQueenMan"
+                style="@style/BtnStyle"
+                android:text="队列管理" />
+
+            <Button
                 android:id="@+id/btnSaveObject"
                 style="@style/BtnStyle"
                 android:text="存储对象" />

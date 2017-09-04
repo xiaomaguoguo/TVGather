@@ -33,7 +33,8 @@ public class Dao {
 	public  SQLiteDatabase getConnection() {
 		SQLiteDatabase sqliteDatabase = null;
 		try { 
-			sqliteDatabase= mDBHelper.getReadableDatabase();
+//			sqliteDatabase= mDBHelper.getReadableDatabase();
+			sqliteDatabase= mDBHelper.getWritableDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +44,7 @@ public class Dao {
 	/**
 	 * 查看数据库中是否有数据
 	 */
-	public synchronized boolean isHasInfors(String urlstr) {
+	public  boolean isHasInfors(String urlstr) {
 		SQLiteDatabase database = getConnection();
 		int count = -1;
 		Cursor cursor = null;
@@ -56,9 +57,9 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (null != database) {
-				database.close();
-			}
+//			if (null != database) {
+//				database.close();
+//			}
 			if (null != cursor) {
 				cursor.close();
 			}
@@ -69,7 +70,7 @@ public class Dao {
 	/**
 	 * 保存 下载的具体信息
 	 */
-	public synchronized void saveInfos(List<DownloadEntity> infos) {
+	public  void saveInfos(List<DownloadEntity> infos) {
 		SQLiteDatabase database = getConnection();
 		try {
 			for (DownloadEntity info : infos) {
@@ -81,17 +82,17 @@ public class Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		} /*finally {
 			if (null != database) {
 				database.close();
 			}
-		}
+		}*/
 	}
 
 	/**
 	 * 得到下载具体信息
 	 */
-	public synchronized List<DownloadEntity> getInfos(String urlstr) {
+	public  List<DownloadEntity> getInfos(String urlstr) {
 		List<DownloadEntity> list = new ArrayList<DownloadEntity>();
 		SQLiteDatabase database = getConnection();
 		Cursor cursor = null;
@@ -107,9 +108,9 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (null != database) {
-				database.close();
-			}
+//			if (null != database) {
+//				database.close();
+//			}
 			if (null != cursor) {
 				cursor.close();
 			}
@@ -120,7 +121,7 @@ public class Dao {
 	/**
 	 * 更新数据库中的下载信息
 	 */
-	public synchronized void updataInfos(int threadId, int compeleteSize, String urlstr) {
+	public  void updataInfos(int threadId, int compeleteSize, String urlstr) {
 		SQLiteDatabase database = getConnection();
 		try {
 			String sql = "update download_info set compelete_size=? where thread_id=? and url=?";
@@ -129,25 +130,25 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (null != database) {
-				database.close();
-			}
+//			if (null != database) {
+//				database.close();
+//			}
 		}
 	}
 
 	/**
 	 * 下载完成后删除数据库中的数据
 	 */
-	public synchronized void delete(String url) {
+	public  void delete(String url) {
 		SQLiteDatabase database = getConnection();
 		try {
 			database.delete("download_info", "url=?", new String[] { url });
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (null != database) {
-				database.close();
-			}
+//			if (null != database) {
+//				database.close();
+//			}
 		}
 	}
 }
