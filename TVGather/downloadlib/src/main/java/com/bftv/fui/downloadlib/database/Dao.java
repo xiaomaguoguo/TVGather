@@ -3,6 +3,7 @@ package com.bftv.fui.downloadlib.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.DropBoxManager;
 
 import com.bftv.fui.downloadlib.entity.DownloadEntity;
 
@@ -19,33 +20,39 @@ public class Dao {
 
 	private static Dao dao=null;
 
+	private DbManager dbManager = null;
+
+	private Dao(){}
+
 	public Dao(Context context) {
 		mDBHelper = new DBHelper(context);
+		dbManager = DbManager.getInstance(mDBHelper);
+
 	}
 
-//	public void getInstance(Context context){
-//		if(dao==null){
-//			dao=new Dao(context);
-//		}
-//		return dao;
-//	}
-
-	public  SQLiteDatabase getConnection() {
-		SQLiteDatabase sqliteDatabase = null;
-		try { 
-//			sqliteDatabase= mDBHelper.getReadableDatabase();
-			sqliteDatabase= mDBHelper.getWritableDatabase();
-		} catch (Exception e) {
-			e.printStackTrace();
+	public Dao getInstance(Context context){
+		if(dao==null){
+			dao=new Dao(context);
 		}
-		return sqliteDatabase;
+		return dao;
 	}
+
+//	public  SQLiteDatabase getConnection() {
+//		SQLiteDatabase sqliteDatabase = null;
+//		try {
+////			sqliteDatabase= mDBHelper.getReadableDatabase();
+//			sqliteDatabase= mDBHelper.getWritableDatabase();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return sqliteDatabase;
+//	}
 
 	/**
 	 * 查看数据库中是否有数据
 	 */
 	public  boolean isHasInfors(String urlstr) {
-		SQLiteDatabase database = getConnection();
+		SQLiteDatabase database = dbManager.getReadableDatabase();
 		int count = -1;
 		Cursor cursor = null;
 		try {
@@ -53,13 +60,14 @@ public class Dao {
 			cursor = database.rawQuery(sql, new String[] { urlstr });
 			if (cursor.moveToFirst()) {
 				count = cursor.getInt(0);
-			} 
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			if (null != database) {
-//				database.close();
-//			}
+			if (null != dbManager) {
+				dbManager.closeDatabase();
+			}
 			if (null != cursor) {
 				cursor.close();
 			}
@@ -71,7 +79,7 @@ public class Dao {
 	 * 保存 下载的具体信息
 	 */
 	public  void saveInfos(List<DownloadEntity> infos) {
-		SQLiteDatabase database = getConnection();
+		SQLiteDatabase database = dbManager.getWritableDatabase();
 		try {
 			for (DownloadEntity info : infos) {
 				String sql = "insert into download_info(thread_id,start_pos, end_pos,compelete_size,url) values (?,?,?,?,?)";
@@ -82,11 +90,11 @@ public class Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} /*finally {
-			if (null != database) {
-				database.close();
+		} finally {
+			if (null != dbManager) {
+				dbManager.closeDatabase();
 			}
-		}*/
+		}
 	}
 
 	/**
@@ -94,7 +102,7 @@ public class Dao {
 	 */
 	public  List<DownloadEntity> getInfos(String urlstr) {
 		List<DownloadEntity> list = new ArrayList<DownloadEntity>();
-		SQLiteDatabase database = getConnection();
+		SQLiteDatabase database = dbManager.getReadableDatabase();
 		Cursor cursor = null;
 		try {
 			String sql = "select thread_id, start_pos, end_pos,compelete_size,url from download_info where url=?";
@@ -108,9 +116,9 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			if (null != database) {
-//				database.close();
-//			}
+			if (null != dbManager) {
+				dbManager.closeDatabase();
+			}
 			if (null != cursor) {
 				cursor.close();
 			}
@@ -122,7 +130,7 @@ public class Dao {
 	 * 更新数据库中的下载信息
 	 */
 	public  void updataInfos(int threadId, int compeleteSize, String urlstr) {
-		SQLiteDatabase database = getConnection();
+		SQLiteDatabase database = dbManager.getWritableDatabase();
 		try {
 			String sql = "update download_info set compelete_size=? where thread_id=? and url=?";
 			Object[] bindArgs = { compeleteSize, threadId, urlstr };
@@ -130,9 +138,9 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			if (null != database) {
-//				database.close();
-//			}
+			if (null != dbManager) {
+				dbManager.closeDatabase();
+			}
 		}
 	}
 
@@ -140,15 +148,15 @@ public class Dao {
 	 * 下载完成后删除数据库中的数据
 	 */
 	public  void delete(String url) {
-		SQLiteDatabase database = getConnection();
+		SQLiteDatabase database = dbManager.getWritableDatabase();
 		try {
 			database.delete("download_info", "url=?", new String[] { url });
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			if (null != database) {
-//				database.close();
-//			}
+			if (null != dbManager.getWritableDatabase()) {
+				dbManager.closeDatabase();
+			}
 		}
 	}
 }
