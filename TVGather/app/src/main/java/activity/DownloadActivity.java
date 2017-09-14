@@ -34,6 +34,7 @@ public class DownloadActivity extends Activity {
     private TextView tv_resouce_name = null;
     private TextView tv_resouce_name2 = null;
     private ProgressBar progressBar = null;
+    private ProgressBar progressBar1 = null;
 
      @Override
      public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class DownloadActivity extends Activity {
          tv_resouce_name = (TextView) findViewById(R.id.tv_resouce_name);
          tv_resouce_name2 = (TextView) findViewById(R.id.tv_resouce_name2);
          progressBar = (ProgressBar) findViewById(R.id.progressBar);
+         progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
      }
 
 
@@ -70,6 +72,8 @@ public class DownloadActivity extends Activity {
                 //可在此处直接操作UI,此处已回归主线程
                  Log.i(TAG,"fileSize = " + loadInfo.getFileSize() + " ; completeSize = " + loadInfo.getComplete());
                  tv_resouce_name.setText("总：" + loadInfo.getFileSize() + " / "  + "已下载：" + loadInfo.getComplete());
+                 progressBar1.setMax(loadInfo.getFileSize());
+                 progressBar1.setProgress(loadInfo.getComplete());
              }
 
              @Override
