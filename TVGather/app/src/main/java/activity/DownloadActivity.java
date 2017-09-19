@@ -44,10 +44,27 @@ public class DownloadActivity extends Activity {
          tv_resouce_name2 = (TextView) findViewById(R.id.tv_resouce_name2);
          progressBar = (ProgressBar) findViewById(R.id.progressBar);
          progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+         handleIntent(getIntent());
      }
 
+    /**
+     * getIntent数据解析
+     * @param intent
+     */
+    private void handleIntent(Intent intent) {
+        if(intent != null){
+            Uri uri = intent.getData();
+            if(uri != null){
+                Log.i(TAG,"getData Uri = " + uri.toString());
+            }
+            Log.i(TAG,"getAction = " + intent.getAction());
+            Log.i(TAG,"getDataString = " + intent.getDataString());
+            Log.i(TAG,"getDataString = " + intent.getComponent().toString());
+        }
+    }
 
-     /**
+
+    /**
       * 响应开始下载按钮的点击事件
       */
      public void startDownload(View v) {

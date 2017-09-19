@@ -38,13 +38,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnMultiThread,btnQueenMan,btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnGetIntent,btnMultiThread,btnQueenMan,btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        btnGetIntent = (Button) findViewById(R.id.btnGetIntent);
         btnMultiThread = (Button) findViewById(R.id.btnMultiThread);
         btnQueenMan = (Button) findViewById(R.id.btnQueenMan);
         btnReadObject = (Button) findViewById(R.id.btnReadObject);
@@ -63,6 +64,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
 
+        btnGetIntent.setOnClickListener(this);
         btnMultiThread.setOnClickListener(this);
         btnQueenMan.setOnClickListener(this);
         btnReadObject.setOnClickListener(this);
@@ -87,6 +89,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.btnGetIntent://getIntetn测试
+                startActivity(new Intent(this,DownloadActivity.class));
+                break;
 
             case R.id.btnMultiThread: // 多线程处理
                 startActivity(new Intent(MainActivity.this,MultiThreadActivity.class));

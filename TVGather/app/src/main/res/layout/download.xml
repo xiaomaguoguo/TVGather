@@ -72,4 +72,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
 </LinearLayout>
