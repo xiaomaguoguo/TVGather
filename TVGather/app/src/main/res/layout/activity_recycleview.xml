@@ -3,48 +3,74 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <HorizontalScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/update"
-            style="@style/BtnStyle"
-            android:text="更新" />
+            <Button
+                android:id="@+id/update"
+                style="@style/BtnStyle"
+                android:text="更新" />
 
-        <Button
-            android:id="@+id/button"
-            style="@style/BtnStyle"
-            android:text="线性" />
+            <Button
+                android:id="@+id/button"
+                style="@style/BtnStyle"
+                android:text="线性" />
 
-        <Button
-            android:id="@+id/button2"
-            style="@style/BtnStyle"
-            android:text="网格" />
+            <Button
+                android:id="@+id/button2"
+                style="@style/BtnStyle"
+                android:text="网格" />
 
-        <Button
-            android:id="@+id/button3"
-            style="@style/BtnStyle"
-            android:text="瀑布" />
+            <Button
+                android:id="@+id/button3"
+                style="@style/BtnStyle"
+                android:text="瀑布" />
 
-        <Button
-            android:id="@+id/button4"
-            style="@style/BtnStyle"
-            android:text="添加" />
+            <Button
+                android:id="@+id/button4"
+                style="@style/BtnStyle"
+                android:text="添加" />
 
-        <Button
-            android:id="@+id/button5"
-            style="@style/BtnStyle"
-            android:text="移除" />
+            <Button
+                android:id="@+id/button5"
+                style="@style/BtnStyle"
+                android:text="移除" />
 
-        <Button
-            android:id="@+id/btnCenter"
-            style="@style/BtnStyle"
-            android:text="条目居中" />
+            <Button
+                android:id="@+id/btnCenter"
+                style="@style/BtnStyle"
+                android:text="条目居中" />
+
+            <Button
+                android:id="@+id/btnLinearSnap"
+                style="@style/BtnStyle"
+                android:text="LinearSnapHelper " />
+
+            <Button
+                android:id="@+id/btnPagerSnap"
+                style="@style/BtnStyle"
+                android:text="PagerSnapHelper " />
+
+            <Button
+                android:id="@+id/btnNextPage"
+                style="@style/BtnStyle"
+                android:text="下一页 " />
+
+            <Button
+                android:id="@+id/btnPrePage"
+                style="@style/BtnStyle"
+                android:text="上一页 " />
 
 
-    </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
    <include layout="@layout/recycleview_container"/>
 
