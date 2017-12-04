@@ -66,6 +66,8 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         LinearLayoutManager llm = new LinearLayoutManager(this);
+        GridLayoutManager glm = new GridLayoutManager(this,4);
+//        lp = glm;
         lp = llm;
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecycleView.setLayoutManager(llm);
@@ -145,26 +147,6 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
         mRecycleView.setLayoutManager(lp);
     }
 
-    /**
-     * 下一页实现
-     */
-    private void nextPage(){
-        LinearLayoutManager llm = (LinearLayoutManager) mRecycleView.getLayoutManager();
-        int lastItemCompletelyPosition = llm.findLastCompletelyVisibleItemPosition();
-        if(lastItemCompletelyPosition == mRecycleView.getChildCount()){
-            Log.d("KKK","已经到最后一个item了，直接return");
-            return ;
-        }
-        int lastItemPosition = llm.findLastVisibleItemPosition();
-        Log.d("KKK","lastItemPosition = " + lastItemPosition +"; lastItemCompletelyPosition = " + lastItemCompletelyPosition);
-
-        View completeView = llm.findViewByPosition( lastItemPosition != lastItemCompletelyPosition ? lastItemCompletelyPosition : lastItemPosition);
-        int[] outLocation = new int[2];
-        completeView.getLocationInWindow(outLocation);
-        int scrollOffset = outLocation[0] + completeView.getWidth();
-        mRecycleView.smoothScrollBy(scrollOffset,0);
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         LinearLayoutManager llm = (LinearLayoutManager) mRecycleView.getLayoutManager();
@@ -172,12 +154,12 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
 
             case KeyEvent.KEYCODE_DPAD_LEFT://执行上一页的逻辑
                 if(llm != null){
-                    View focusChild = mRecycleView.getFocusedChild();
-                    int[] outLocation = new int[2];
-                    focusChild.getLocationInWindow(outLocation);
-                    if(outLocation[0] == 0 || outLocation[0] <focusChild.getWidth()){
-                        prePage();
-                    }
+//                    View focusChild = mRecycleView.getFocusedChild();
+//                    int[] outLocation = new int[2];
+//                    focusChild.getLocationInWindow(outLocation);
+//                    if(outLocation[0] == 0 || outLocation[0] <focusChild.getWidth()){
+//                        prePage();
+//                    }
                 }
                 break;
 
@@ -197,6 +179,29 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
     }
 
     /**
+     * 下一页实现
+     */
+    private void nextPage(){
+        LinearLayoutManager llm = (LinearLayoutManager) mRecycleView.getLayoutManager();
+        int lastItemCompletelyPosition = llm.findLastCompletelyVisibleItemPosition();
+        if(lastItemCompletelyPosition == mRecycleView.getChildCount()){
+            Log.d("KKK","已经到最后一个item了，直接return");
+            return ;
+        }
+        int lastItemPosition = llm.findLastVisibleItemPosition();
+        Log.d("KKK","lastItemPosition = " + lastItemPosition +"; lastItemCompletelyPosition = " + lastItemCompletelyPosition);
+
+        View completeView = llm.findViewByPosition( lastItemPosition != lastItemCompletelyPosition ? lastItemCompletelyPosition : lastItemPosition);
+        int[] outLocation = new int[2];
+        completeView.getLocationInWindow(outLocation);
+        if(mRecycleView.getLayoutManager() instanceof GridLayoutManager) {
+            mRecycleView.smoothScrollBy(0,outLocation[1] + completeView.getHeight());
+        }else if (mRecycleView.getLayoutManager() instanceof LinearLayoutManager){
+            mRecycleView.smoothScrollBy(outLocation[0] + completeView.getWidth(),0);
+        }
+    }
+
+    /**
      * 上一页实现
      */
     private void prePage(){
@@ -212,13 +217,13 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
         View completeView2 = llm2.findViewByPosition( firstItemPosition2 != firstItemCompletePosition2 ? firstItemCompletePosition2 : firstItemPosition2);
         int[] outLocation2 = new int[2];
         completeView2.getLocationInWindow(outLocation2);
-        int scrollOffset2 = 0;
-        if(firstItemPosition2 != firstItemCompletePosition2){ // 说明有显示一半
-            scrollOffset2 = outLocation2[0];
-        }else{ // 说明已完整显示
-            scrollOffset2 = outLocation2[0] + completeView2.getWidth();
+        if(mRecycleView.getLayoutManager() instanceof GridLayoutManager){
+            mRecycleView.smoothScrollBy(0, -(outLocation2[1] + completeView2.getHeight()*2));
+        }else if(mRecycleView.getLayoutManager() instanceof LinearLayoutManager){
+            mRecycleView.smoothScrollBy(outLocation2[0] - mRecycleView.getWidth(),0);
         }
-        mRecycleView.smoothScrollBy(scrollOffset2 - mRecycleView.getWidth(),0);
+
+
     }
 
     private void updateListItem(int position) {
