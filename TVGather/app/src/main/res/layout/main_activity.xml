@@ -111,6 +111,12 @@
                 android:text="RV相关"
                 />
 
+            <Button
+                android:id="@+id/btnMeasure"
+                style="@style/BtnStyle"
+                android:text="测量模式学习"
+                />
+
 
         </LinearLayout>
     </HorizontalScrollView>

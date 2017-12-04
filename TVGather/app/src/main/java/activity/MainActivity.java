@@ -27,6 +27,7 @@ import db.StudentService;
 import entity.Student;
 import fragment.CateFragment;
 import fragment.ConstraintLayoutFragment;
+import fragment.MeasureFragment;
 import fragment.SoundPoolFragment;
 import fragment.TimeCountFragment;
 import service.MyIntentService;
@@ -38,7 +39,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Button btnGetIntent,btnMultiThread,btnQueenMan,btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate;
+    private Button btnGetIntent,btnMultiThread,btnQueenMan,btnSaveObject,btnReadObject,btnAccessClick,btnDownload,btnDownload2,btnMultiService,btnConstraint,btnJs,btnOpenXiaoBanL,btnKeyEvent,btnFocus,btnTimeCount,btnRecycle,btnSoundPool,btnCate,btnMeasure;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnRecycle =  (Button) findViewById(R.id.btnRecycle);
         btnSoundPool =  (Button) findViewById(R.id.btnSoundPool);
         btnCate =  (Button) findViewById(R.id.btnCate);
+        btnMeasure =  (Button) findViewById(R.id.btnMeasure);
 
         btnGetIntent.setOnClickListener(this);
         btnMultiThread.setOnClickListener(this);
@@ -82,6 +84,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnRecycle.setOnClickListener(this);
         btnSoundPool.setOnClickListener(this);
         btnCate.setOnClickListener(this);
+        btnMeasure.setOnClickListener(this);
 
     }
 
@@ -196,6 +199,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 Intent recyclev = new Intent(this, RecycleViewActivity.class);
                 startActivity(recyclev);
                 break;
+
+            case R.id.btnMeasure: // 测试模式
+                commitFragment(MeasureFragment.Companion.newInstance());
+                break;
+
+                default:
+                    break;
 
         }
     }
