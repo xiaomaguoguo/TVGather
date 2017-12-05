@@ -134,11 +134,11 @@ public class RecycleViewActivity extends Activity implements View.OnClickListene
                 break;
 
             case R.id.btnNextPage://下一页
-                PageUtils.nextPage(mRecycleView);
+                PageUtils.INSTANCE.nextPage(mRecycleView);
                 break;
 
             case R.id.btnPrePage://上一页
-                PageUtils.prePage(mRecycleView);
+                PageUtils.INSTANCE.prePage(mRecycleView);
                 break;
 
                 default:
