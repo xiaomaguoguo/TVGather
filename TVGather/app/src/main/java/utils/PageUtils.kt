@@ -46,25 +46,25 @@ object PageUtils {
      * 上一页实现
      */
     fun prePage(mRecycleView: RecyclerView) {
-        val llm2 = mRecycleView.layoutManager as LinearLayoutManager
-        val firstItemCompletePosition2 = llm2.findFirstCompletelyVisibleItemPosition()
-        if (firstItemCompletePosition2 == 0) {
+        val llm = mRecycleView.layoutManager as LinearLayoutManager
+        val firstItemCompletePosition = llm.findFirstCompletelyVisibleItemPosition()
+        if (firstItemCompletePosition == 0) {
             if (DEBUG) {
                 Log.d(TAG, "已经到最前面了，直接return")
             }
             return
         }
-        val firstItemPosition2 = llm2.findFirstVisibleItemPosition()
+        val firstItemPosition = llm.findFirstVisibleItemPosition()
         if (DEBUG) {
-            Log.d(TAG, "firstItemPosition2 = $firstItemPosition2; firstItemCompletePosition2 = $firstItemCompletePosition2")
+            Log.d(TAG, "firstItemPosition2 = $firstItemPosition; firstItemCompletePosition2 = $firstItemCompletePosition")
         }
-        val completeView2 = llm2.findViewByPosition(if (firstItemPosition2 != firstItemCompletePosition2) firstItemCompletePosition2 else firstItemPosition2)
-        val outLocation2 = IntArray(2)
-        completeView2.getLocationInWindow(outLocation2)
+        val completeView = llm.findViewByPosition(if (firstItemPosition != firstItemCompletePosition) firstItemCompletePosition else firstItemPosition)
+        val outLocation = IntArray(2)
+        completeView.getLocationInWindow(outLocation)
         if (mRecycleView.layoutManager is GridLayoutManager) {
-            mRecycleView.smoothScrollBy(0, -(outLocation2[1] + completeView2.height * 2))
+            mRecycleView.smoothScrollBy(0, -(outLocation[1] + completeView.height * 2))
         } else if (mRecycleView.layoutManager is LinearLayoutManager) {
-            mRecycleView.smoothScrollBy(outLocation2[0] - mRecycleView.width, 0)
+            mRecycleView.smoothScrollBy(outLocation[0] - mRecycleView.width, 0)
         }
     }
 
