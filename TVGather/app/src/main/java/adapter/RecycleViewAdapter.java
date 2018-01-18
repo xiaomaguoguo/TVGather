@@ -54,7 +54,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.btn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                FocusUtils.onFocusChangeStill(v,hasFocus);
+//                FocusUtils.onFocusChangeStill(v,hasFocus);
+                float scaleValue = hasFocus?  2.0f : 1.0f;
+                v.animate().scaleX(scaleValue).scaleY(scaleValue).setDuration(150).start();
             }
         });
     }
