@@ -15,6 +15,11 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/requestTest"
+                style="@style/BtnStyle"
+                android:text="requestFocus测试"/>
+
+            <Button
                 android:id="@+id/btnGetIntent"
                 style="@style/BtnStyle"
                 android:text="getIntent测试" />

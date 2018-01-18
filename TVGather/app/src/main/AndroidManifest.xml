@@ -49,6 +49,7 @@
         <activity android:name="activity.MultiThreadActivity" />
         <activity android:name="activity.DownloadActivity" />
         <activity android:name="activity.DownloadActivity2" />
+        <activity android:name="activity.RequestFocuseActivity" />
         <activity android:name="activity.RecycleViewCenterActivity" />
         <activity android:name="activity.RecycleViewActivity"/>
         <activity android:name="activity.JavaJsActivity"/>
